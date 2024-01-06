@@ -1,6 +1,41 @@
 # 02476 Hatespeech Classification
 
+### Group 31
+Group members:
+Simon Daniel Eiriksson, s180722
+Magnus Harder, s204117
+Mattias Olofsson, s232407 
+Amalie Roark, s184227 
+
+## Project Discription
 A Course in ML-Ops
+
+### Overall goal
+The overall goal of the project is to create a hate-speech classifier with a command line interface. The classifier will be based on a two stage deep learning architecture, where the first stage embeds raw text using some pre-trained text embedding model, and the second stage is a classification layer trained using hate-speech text data, that determines if the text is hatespeech. Ultimately, an end user should be able to provide text as a prompt as well as provide the classification results through the command line. Furthermore, the user should be enabled to alter between different underlying text embedding models along with the type of classification layer. 
+
+
+### Frameworks
+The models are build upon pretrained transformers existing in the huggingface framework, while pytorch-lightning enables training automatization through model deffinition.
+
+- Transformers
+- Pytorch_lightning
+
+
+### Data
+The Data consists of senteces 440907 senteces labled by wheater they are hate speech.
+“A Curated Hate Speech Dataset”, Mendeley Data, V1 (https://data.mendeley.com/datasets/9sxpkmm8xn/1)
+
+Devansh Mody, YiDong Huang, Thiago Eustaquio Alves de Oliveira,
+A curated dataset for hate speech detection on social media text,
+Data in Brief, Volume 46, 2023, 108832, ISSN 2352-3409,
+https://www.sciencedirect.com/science/article/pii/S2352340922010356
+
+### Models
+- Sentence embedding models from hugginface
+- Classificaation Layer
+- Adaptivity of underlying LLM's
+
+
 
 ## Project structure
 
