@@ -23,7 +23,7 @@ The models are build upon pretrained transformers existing in the huggingface fr
 
 ### Data
 The Data consists of senteces 440907 senteces labled by wheater they are hate speech.
-“A Curated Hate Speech Dataset”, Mendeley Data, V1 (https://data.mendeley.com/datasets/9sxpkmm8xn/1)
+“A Curated Hate Speech Dataset”, Mendeley Data, V1 (https://www.kaggle.com/datasets/waalbannyantudre/hate-speech-detection-curated-dataset)
 
 Devansh Mody, YiDong Huang, Thiago Eustaquio Alves de Oliveira,
 A curated dataset for hate speech detection on social media text,
@@ -45,9 +45,9 @@ point on the checklist for the exam.
 ### Week 1
 
 * [x] Create a git repository
-* [ ] Make sure that all team members have write access to the github repository
-* [ ] Create a dedicated environment for you project to keep track of your packages
-* [ ] Create the initial file structure using cookiecutter
+* [x] Make sure that all team members have write access to the github repository
+* [x] Create a dedicated environment for you project to keep track of your packages
+* [x] Create the initial file structure using cookiecutter
 * [ ] Fill out the `make_dataset.py` file such that it downloads whatever data you need and
 * [ ] Add a model file and a training script and get that running
 * [ ] Remember to fill out the `requirements.txt` file with whatever dependencies that you are using
