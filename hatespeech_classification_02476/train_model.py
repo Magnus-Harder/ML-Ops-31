@@ -1,5 +1,9 @@
 from pytorch_lightning import Trainer
+<<<<<<< HEAD:02476 Hatespeech Classification/train_model.py
 from models.model import HatespeechClassification
+=======
+from models.model import MyModel
+>>>>>>> b2d05d8b222b896e1a85ee211e323bf053019d41:hatespeech_classification_02476/train_model.py
 
 import hydra
 import logging
