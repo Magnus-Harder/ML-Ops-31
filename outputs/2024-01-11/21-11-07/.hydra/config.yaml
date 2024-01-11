@@ -1,0 +1,11 @@
+experiments:
+  class_configuration:
+    model_type: Fast
+    hidden_dim: 128
+    activation: relu
+    dropout: 0.2
+    optimizer: adam
+    learning_rate: 0.001
+  training_configuration:
+    batch_size: 32
+    max_epochs: 10

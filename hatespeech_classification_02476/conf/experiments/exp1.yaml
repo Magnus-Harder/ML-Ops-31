@@ -1,6 +1,6 @@
 # Experiment 1: parameters for the "fast" model
 class_configuration:
-  model_type: Fast 
+  model_type: Best 
   hidden_dim: 128
   activation: relu
   dropout:    0.2

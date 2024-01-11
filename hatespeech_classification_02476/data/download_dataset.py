@@ -1,19 +1,21 @@
 import os
 import click
 import requests
+
 # froomp
 import json
 import zipfile
 
 DEFAULT_DATASET = "waalbannyantudre/hate-speech-detection-curated-dataset/"
-DEFAULT_FOLDER = "data/raw/" 
+DEFAULT_FOLDER = "data/raw/"
 
 
 def check_if_dataset_exists(full_path):
     return os.path.exists(full_path)
 
+
 def get_kaggle_credentials(kagglefile):
-    if 'KAGGLE_USERNAME' in os.environ.keys() and 'KAGGLE_KEY' in os.environ.keys():
+    if "KAGGLE_USERNAME" in os.environ.keys() and "KAGGLE_KEY" in os.environ.keys():
         print("Kaggle credentials already set")
     # If kagglefile does not exist, create it
     else:
@@ -37,20 +39,22 @@ def get_kaggle_credentials(kagglefile):
             f.close()
 
     # set kaggle credentials
-    os.environ['KAGGLE_USERNAME'] = api_key["username"]
-    os.environ['KAGGLE_KEY'] = api_key["key"]
+    os.environ["KAGGLE_USERNAME"] = api_key["username"]
+    os.environ["KAGGLE_KEY"] = api_key["key"]
     from kaggle.api.kaggle_api_extended import KaggleApi
+
     api = KaggleApi()
     api.authenticate()
 
     return api
 
+
 def unzip_file(zip_file_path, extract_to_path):
-    with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+    with zipfile.ZipFile(zip_file_path, "r") as zip_ref:
         zip_ref.extractall(extract_to_path)
 
 
-def download_dataset(dataset_full_name, dataset_folder, kagglefile = "./data/kaggle.json"):
+def download_dataset(dataset_full_name, dataset_folder, kagglefile="./data/kaggle.json"):
     kagglefile = "./data/kaggle.json"
     # get kaggle credentials
     api = get_kaggle_credentials(kagglefile)
@@ -61,6 +65,7 @@ def download_dataset(dataset_full_name, dataset_folder, kagglefile = "./data/kag
     if not os.path.exists(dataset_folder):
         os.makedirs(dataset_folder)
     api.dataset_download_files(dataset_full_name, path=dataset_folder, unzip=True, quiet=False)
+
 
 @click.command()
 @click.argument("dataset_fullname", required=False)
@@ -74,6 +79,7 @@ def make_dataset(dataset_fullname, dataset_folder):
         raise ValueError("Both dataset_fullname and dataset_folder must be specified")
     download_dataset(dataset_fullname, dataset_folder)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     # Get the data and process it
     make_dataset()

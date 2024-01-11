@@ -6,12 +6,12 @@ from pytorch_lightning import LightningModule
 
 # 'aditeyabaral/sentencetransformer-bert-base-cased'
 class HatespeechClassification(LightningModule):
-    def __init__(self, model_type='Fast', hidden_dim=128, activation='relu', dropout=0.2, learning_rate=1e-2, optimizer='Adam'):
+    def __init__(
+        self, model_type="Fast", hidden_dim=128, activation="relu", dropout=0.2, learning_rate=1e-2, optimizer="Adam"
+    ):
         super().__init__()
 
-        model_dict = {'Best' :  'all-mpnet-base-v2',
-              'Fast' : 'all-MiniLM-L6-v2',
-              'Standard' : 'all-distilbert-base-v2'}
+        model_dict = {"Best": "all-mpnet-base-v2", "Fast": "all-MiniLM-L6-v2", "Standard": "all-distilbert-base-v2"}
 
         # Define Variables to Determine wheather model is extrapolating on user input
         self.extrapolation = False
@@ -24,45 +24,43 @@ class HatespeechClassification(LightningModule):
 
         # Define the Classifier
         self.classifier = nn.Sequential(
-            nn.Linear(embedding_size,128),
-            nn.ReLU(),
-            nn.Linear(128,2),
+            nn.Linear(embedding_size, 128), 
+            nn.ReLU(), 
+            nn.Linear(128, 2), 
             nn.LogSoftmax(dim=1)
         )
-        
+
         # Define the loss function
         self.loss_fn = nn.NLLLoss()
-    
+
     # Forward pass
     def forward(self, x):
-        
         # If Input is encoded, then we are training
         if self.extrapolation == False:
             output = self.classifier(x)
         else:
             # Encode the sentence and convert to probability
             output = exp(self.classifier(self.embedder.encode(x, convert_to_tensor=True)))
-        
-        return output
-    
-    # Training step for pytorch lightning
-    def training_step(self,batch):
 
+        return output
+
+    # Training step for pytorch lightning
+    def training_step(self, batch):
         # Get the data and target
         data, target = batch
 
         # Get the predictions and calculate the loss
         pred = self(data)
         loss = self.loss_fn(pred, target)
-        
+
         return loss
-    
+
     # Optimizer for pytorch lightning
     def configure_optimizers(self):
-        return optim.Adam(self.parameters(), lr = 1e-2)
+        return optim.Adam(self.parameters(), lr=1e-2)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # A simple test to see that the model is loaded correctly:
     sentences = ["This is an example sentence", "Each sentence is converted"]
 
