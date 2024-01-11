@@ -1,0 +1,12 @@
+# Experiment 1: parameters for the "fast" model
+class_configuration:
+  model_type: Fast 
+  hidden_dim: 128
+  activation: relu
+  dropout:    0.2
+  optimizer: adam 
+  learning_rate: 1e-3
+
+training_configuration:
+  batch_size: 32
+  max_epochs: 10
