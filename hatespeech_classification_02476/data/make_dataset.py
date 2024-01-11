@@ -4,6 +4,7 @@ import csv
 from sentence_transformers import SentenceTransformer
 import torch
 import pandas as pd
+from tqdm import tqdm
 
 RAW_DATA_FILENAME = "data/raw/HateSpeechDataset.csv"
 PROCESSED_DATA_PATH = "data/processed"
@@ -25,20 +26,41 @@ def make_dataset(training_ratio):
     text_data = raw_df['Content'].values
     labels_tensor = torch.Tensor([int(label) for label in raw_df['Label'].tolist()])
 
-    #Embed text data
+    #Embed text data and change model to mps
     print("Loading sentence transformer...")
     encoding_model = SentenceTransformer(model_name)
+    
+    # Change model to MPS
+    if torch.backends.mps.is_available():
+        print("Using MPS")
+        device = torch.device('mps')
+        encoding_model.to('mps')
+    elif torch.backends.cuda.is_available():
+        print("Using CUDA")
+        device = torch.device('cuda')
+        encoding_model.to('cuda')
+    else:
+        print("Using CPU")
+        device = torch.device('cpu')
+        encoding_model.to('cpu')
+
     print("Encoding data...")
-    N = 1000
-    text_encodings_tensor = encoding_model.encode(text_data[:N], convert_to_tensor = True)
-    labels_tensor = labels_tensor[:N]
+    text_encodings_tensor = torch.zeros((len(labels_tensor),encoding_model.get_sentence_embedding_dimension()), device=device)
+    
+    # Loop over sentences in batches 
+    batch_size = 256
+    
+
+    for i in tqdm(range(0,len(text_data),batch_size)):
+        if i+batch_size > len(text_data):
+            batch_size = len(text_data) - i
+        batch = text_data[i:i+batch_size]
+        text_encodings_tensor[i:i+batch_size,:] =  encoding_model.encode(batch, convert_to_tensor=True)
+    
     #Shuffle data
     perm = torch.randperm(labels_tensor.shape[0])
-    #print(text_encodings_tensor[:N,:].shape[0])
     text_encodings_tensor = text_encodings_tensor[perm,:]
     labels_tensor = labels_tensor[perm]
-    #print(labels_tensor.shape)
-    #print(text_encodings_tensor.shape)
     
     #Split data
     n_split = int(training_ratio * labels_tensor.shape[0])
