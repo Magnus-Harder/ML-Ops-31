@@ -7,7 +7,7 @@ RUN apt update && \
 
 COPY requirements.txt requirements.txt
 COPY pyproject.toml pyproject.toml
-COPY 02476 Hatespeech Classification/ 02476 Hatespeech Classification/
+COPY "02476 Hatespeech Classification"/ "02476 Hatespeech Classification"/
 COPY data/ data/
 
 WORKDIR /
