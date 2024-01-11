@@ -8,7 +8,6 @@ import zipfile
 DEFAULT_DATASET = "waalbannyantudre/hate-speech-detection-curated-dataset/"
 DEFAULT_FOLDER = "data/raw/" 
 
-
 def check_if_dataset_exists(full_path):
     return os.path.exists(full_path)
 
