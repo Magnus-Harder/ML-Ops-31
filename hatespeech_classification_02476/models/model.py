@@ -4,15 +4,14 @@ from sentence_transformers import SentenceTransformer
 from pytorch_lightning import LightningModule
 
 
-# Define model dictionary
-model_dict = {'Best' :  'all-mpnet-base-v2',
-              'Fast' : 'all-MiniLM-L6-v2',
-              'Standard' : 'all-distilbert-base-v2'}
-
 # 'aditeyabaral/sentencetransformer-bert-base-cased'
 class HatespeechClassification(LightningModule):
     def __init__(self, model_type='Fast', hidden_dim=128, activation='relu', dropout=0.2, learning_rate=1e-2, optimizer='Adam'):
         super().__init__()
+
+        model_dict = {'Best' :  'all-mpnet-base-v2',
+              'Fast' : 'all-MiniLM-L6-v2',
+              'Standard' : 'all-distilbert-base-v2'}
 
         # Define Variables to Determine wheather model is extrapolating on user input
         self.extrapolation = False
