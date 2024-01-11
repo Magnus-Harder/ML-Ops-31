@@ -118,7 +118,7 @@ hydra:
     override_dirname: ''
     id: ???
     num: ???
-    config_name: null
+    config_name: config
     env_set: {}
     env_copy: []
     config:
@@ -136,15 +136,16 @@ hydra:
       schema: pkg
       provider: hydra
     - path: /Users/magnusharder/Documents/UNI-DTU/Kandidat/7. Semester/ML Ops/ML-Ops-31/02476
-        Hatespeech Classification/config
+        Hatespeech Classification/conf
       schema: file
       provider: main
     - path: ''
       schema: structured
       provider: schema
     output_dir: /Users/magnusharder/Documents/UNI-DTU/Kandidat/7. Semester/ML Ops/ML-Ops-31/02476
-      Hatespeech Classification/outputs/2024-01-11/12-32-16
+      Hatespeech Classification/outputs/2024-01-11/13-22-57
     choices:
+      experiments: exp1
       hydra/env: default
       hydra/callbacks: null
       hydra/job_logging: default
