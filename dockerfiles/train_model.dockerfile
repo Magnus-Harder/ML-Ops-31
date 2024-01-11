@@ -7,11 +7,17 @@ RUN apt update && \
 
 COPY requirements.txt requirements.txt
 COPY pyproject.toml pyproject.toml
-COPY "02476 Hatespeech Classification"/ "02476 Hatespeech Classification"/
-COPY data/ data/
+COPY hatespeech_classification_02476/ hatespeech_classification_02476/
+#COPY data/ data/
 
 WORKDIR /
 RUN pip install -r requirements.txt --no-cache-dir
-RUN pip install . --no-deps --no-cache-dir
+#RUN pip install . --no-deps --no-cache-dir
+
+COPY .git .git
+COPY .dvc .dvc
+COPY data.dvc data.dvc
+RUN dvc pull
+
 
 ENTRYPOINT ["python", "-u", "02476 Hatespeech Classification/train_model.py"]

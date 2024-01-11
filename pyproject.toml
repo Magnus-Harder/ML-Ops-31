@@ -3,7 +3,7 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "02476 Hatespeech Classification"
+name = "hatespeech_classification_02476"
 version = "0.0.1"
 description = "A Course in ML-Ops"
 authors = [
