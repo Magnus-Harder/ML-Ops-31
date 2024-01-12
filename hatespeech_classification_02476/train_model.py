@@ -67,7 +67,7 @@ def train(cfg):
     trainer.fit(model, train_dataloader, val_dataloader)
 
     # Save model
-    #torch.save(model.state_dict(), "models/model.pt")
+    torch.save(model.state_dict(), "models/model.pt")
 
 
 if __name__ == "__main__":
