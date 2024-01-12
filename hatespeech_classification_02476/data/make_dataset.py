@@ -1,6 +1,5 @@
 import os
 import click
-import csv
 from sentence_transformers import SentenceTransformer
 import torch
 import pandas as pd
@@ -14,7 +13,6 @@ model_dict = {"Best": "all-mpnet-base-v2", "Fast": "all-MiniLM-L6-v2"}
 @click.command()
 @click.argument("training_ratio", required=False, default=0.8)
 @click.argument("model_name", required=False, default="Fast")
-# @click.argument("dataset_folder", required=False)
 def make_dataset(training_ratio, model_name):
     torch.manual_seed(0)
 
@@ -28,6 +26,7 @@ def make_dataset(training_ratio, model_name):
 
     # Embed text data and change model to mps
     print("Loading sentence transformer...")
+    print("Model:", model_dict[model_name])
     encoding_model = SentenceTransformer(model_dict[model_name])
 
     # Change model to MPS
@@ -79,10 +78,10 @@ def make_dataset(training_ratio, model_name):
     test_labels = test_labels.to("cpu")
 
     print("Saving data...")
-    torch.save(train_data, os.path.join(f"{PROCESSED_DATA_PATH}/{model_name}", "train_data.pt"))
-    torch.save(test_data, os.path.join(f"{PROCESSED_DATA_PATH}/{model_name}", "test_data.pt"))
-    torch.save(train_labels, os.path.join(f"{PROCESSED_DATA_PATH}/{model_name}", "train_labels.pt"))
-    torch.save(test_labels, os.path.join(f"{PROCESSED_DATA_PATH}/{model_name}", "test_labels.pt"))
+    torch.save(train_data, os.path.join(f"{PROCESSED_DATA_PATH}/{model_dict[model_name]}", "train_data.pt"))
+    torch.save(test_data, os.path.join(f"{PROCESSED_DATA_PATH}/{model_dict[model_name]}", "test_data.pt"))
+    torch.save(train_labels, os.path.join(f"{PROCESSED_DATA_PATH}/{model_dict[model_name]}", "train_labels.pt"))
+    torch.save(test_labels, os.path.join(f"{PROCESSED_DATA_PATH}/{model_dict[model_name]}", "test_labels.pt"))
 
 
 if __name__ == "__main__":

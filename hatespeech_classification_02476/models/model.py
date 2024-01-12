@@ -3,15 +3,18 @@ from torch import nn, optim, exp
 from sentence_transformers import SentenceTransformer
 from pytorch_lightning import LightningModule
 from torchmetrics import Accuracy
+from torchmetrics.classification import MulticlassConfusionMatrix
 accuracy = Accuracy(task="multiclass", num_classes=2)
+confusionmatrix = MulticlassConfusionMatrix(num_classes=2)
 
 
 # 'aditeyabaral/sentencetransformer-bert-base-cased'
 class HatespeechClassification(LightningModule):
     def __init__(
-        self, model_type="Fast", hidden_dim=128, activation="relu", dropout=0.2, learning_rate=1e-2, optimizer="Adam"
+        self, model_type="Fast", hidden_dim=128, activation="relu", dropout=0.4, learning_rate=1e-4, optimizer="Adam"
     ):
         super().__init__()
+        self.learning_rate = learning_rate
 
         model_dict = {"Best": "all-mpnet-base-v2", "Fast": "all-MiniLM-L6-v2"}
 
@@ -26,14 +29,16 @@ class HatespeechClassification(LightningModule):
 
         # Define the Classifier
         self.classifier = nn.Sequential(
-            nn.Linear(embedding_size, 128), 
+            nn.Dropout(dropout),
+            nn.Linear(embedding_size, hidden_dim), 
+            nn.Dropout(dropout),
             nn.ReLU(), 
-            nn.Linear(128, 2), 
-            nn.LogSoftmax(dim=1)
+            nn.Linear(hidden_dim, 1), 
+            nn.Sigmoid()
         )
 
         # Define the loss function
-        self.loss_fn = nn.NLLLoss()
+        self.loss_fn = nn.BCELoss
 
     # Forward pass
     def forward(self, x):
@@ -42,7 +47,7 @@ class HatespeechClassification(LightningModule):
             output = self.classifier(x)
         else:
             # Encode the sentence and convert to probability
-            output = exp(self.classifier(self.embedder.encode(x, convert_to_tensor=True)))
+            output = self.classifier(self.embedder.encode(x, convert_to_tensor=True))
 
         return output
 
@@ -56,8 +61,8 @@ class HatespeechClassification(LightningModule):
         loss = self.loss_fn(pred, target)
         acc = accuracy(pred, target)
 
-        self.log("train/loss", loss)
-        self.log("train/acc", acc)
+        self.log("train_loss", loss)
+        self.log("train_acc", acc)
         
 
         return loss
@@ -72,8 +77,13 @@ class HatespeechClassification(LightningModule):
         loss = self.loss_fn(pred, target)
         acc = accuracy(pred, target)
 
-        self.log("val/loss", loss)
-        self.log("val/acc", acc)
+        # Get the predictions
+        pred = pred.argmax(dim=1)
+        confmatrix = confusionmatrix(pred, target)
+
+        self.log("val_loss", loss)
+        self.log("val_acc", acc)
+        self.log("val_confmatrix", confmatrix)
 
         return loss
 
