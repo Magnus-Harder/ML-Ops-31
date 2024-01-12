@@ -1,20 +1,24 @@
 from pytorch_lightning import Trainer
 from models.model import HatespeechClassification
+from pytorch_lightning.loggers import WandbLogger
+
 import torch
 import hydra
-import logging
+import omegaconf
 
-log = logging.getLogger(__name__)
+wandb_logger=WandbLogger(log_model="all")
+
 
 
 @hydra.main(version_base=None, config_path="conf", config_name="config")
 def train(cfg):
-    log.info(cfg)
+    wandb_logger.log_hyperparams(omegaconf.OmegaConf.to_container(cfg))
+
     hparams = cfg["experiments"]
 
     # Create the model and trainer
     model = HatespeechClassification(**hparams["class_configuration"])
-    trainer = Trainer(max_epochs=hparams["training_configuration"]["max_epochs"], accelerator="cpu", logger=log)
+    trainer = Trainer(max_epochs=hparams["training_configuration"]["max_epochs"], accelerator="cpu", logger=wandb_logger, enable_checkpointing=False)
 
     # Load training data
     train_data = torch.load("data/processed/train_data.pt")
@@ -42,7 +46,7 @@ def train(cfg):
     trainer.fit(model, train_dataloader, val_dataloader)
 
     # Save model
-    torch.save(model.state_dict(), "models/model.pt")
+    #torch.save(model.state_dict(), "models/model.pt")
 
 
 if __name__ == "__main__":

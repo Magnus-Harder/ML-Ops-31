@@ -9,13 +9,13 @@ from tqdm import tqdm
 RAW_DATA_FILENAME = "data/raw/HateSpeechDataset.csv"
 PROCESSED_DATA_PATH = "data/processed"
 
-model_name = "aditeyabaral/sentencetransformer-bert-base-cased"
-
+model_dict = {"Best": "all-mpnet-base-v2", "Fast": "all-MiniLM-L6-v2"}
 
 @click.command()
 @click.argument("training_ratio", required=False, default=0.8)
+@click.argument("model_name", required=False, default="Fast")
 # @click.argument("dataset_folder", required=False)
-def make_dataset(training_ratio):
+def make_dataset(training_ratio, model_name):
     torch.manual_seed(0)
 
     raw_df = pd.read_csv(RAW_DATA_FILENAME)
@@ -28,7 +28,7 @@ def make_dataset(training_ratio):
 
     # Embed text data and change model to mps
     print("Loading sentence transformer...")
-    encoding_model = SentenceTransformer(model_name)
+    encoding_model = SentenceTransformer(model_dict[model_name])
 
     # Change model to MPS
     if torch.backends.mps.is_available():
@@ -79,10 +79,10 @@ def make_dataset(training_ratio):
     test_labels = test_labels.to("cpu")
 
     print("Saving data...")
-    torch.save(train_data, os.path.join(PROCESSED_DATA_PATH, "train_data.pt"))
-    torch.save(test_data, os.path.join(PROCESSED_DATA_PATH, "test_data.pt"))
-    torch.save(train_labels, os.path.join(PROCESSED_DATA_PATH, "train_labels.pt"))
-    torch.save(test_labels, os.path.join(PROCESSED_DATA_PATH, "test_labels.pt"))
+    torch.save(train_data, os.path.join(f"{PROCESSED_DATA_PATH}/{model_name}", "train_data.pt"))
+    torch.save(test_data, os.path.join(f"{PROCESSED_DATA_PATH}/{model_name}", "test_data.pt"))
+    torch.save(train_labels, os.path.join(f"{PROCESSED_DATA_PATH}/{model_name}", "train_labels.pt"))
+    torch.save(test_labels, os.path.join(f"{PROCESSED_DATA_PATH}/{model_name}", "test_labels.pt"))
 
 
 if __name__ == "__main__":

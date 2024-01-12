@@ -2,6 +2,8 @@
 from torch import nn, optim, exp
 from sentence_transformers import SentenceTransformer
 from pytorch_lightning import LightningModule
+from torchmetrics import Accuracy
+accuracy = Accuracy(task="multiclass", num_classes=2)
 
 
 # 'aditeyabaral/sentencetransformer-bert-base-cased'
@@ -11,7 +13,7 @@ class HatespeechClassification(LightningModule):
     ):
         super().__init__()
 
-        model_dict = {"Best": "all-mpnet-base-v2", "Fast": "all-MiniLM-L6-v2", "Standard": "all-distilbert-base-v2"}
+        model_dict = {"Best": "all-mpnet-base-v2", "Fast": "all-MiniLM-L6-v2"}
 
         # Define Variables to Determine wheather model is extrapolating on user input
         self.extrapolation = False
@@ -52,6 +54,26 @@ class HatespeechClassification(LightningModule):
         # Get the predictions and calculate the loss
         pred = self(data)
         loss = self.loss_fn(pred, target)
+        acc = accuracy(pred, target)
+
+        self.log("train/loss", loss)
+        self.log("train/acc", acc)
+        
+
+        return loss
+    
+    def validation_step(self, batch):
+
+        # Get the data and target
+        data, target = batch
+
+        # Get the predictions and calculate the loss
+        pred = self(data)
+        loss = self.loss_fn(pred, target)
+        acc = accuracy(pred, target)
+
+        self.log("val/loss", loss)
+        self.log("val/acc", acc)
 
         return loss
 

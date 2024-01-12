@@ -8,5 +8,5 @@ class_configuration:
   learning_rate: 1e-3
 
 training_configuration:
-  batch_size: 32
-  max_epochs: 10
+  batch_size: 1024
+  max_epochs: 25
