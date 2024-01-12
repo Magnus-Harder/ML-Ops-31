@@ -1,6 +1,67 @@
 outs:
+<<<<<<< HEAD
 - md5: b4921275c474af212232ba3a8b3a0b58.dir
   size: 3198062971
   nfiles: 12
   hash: md5
+=======
+- hash: md5
+>>>>>>> 88285f149032a6e323e01c4ba9f57b15834fbbbe
   path: data
+  files:
+  - relpath: processed/.gitkeep
+    md5: d41d8cd98f00b204e9800998ecf8427e
+    size: 0
+    cloud:
+      remote_storage:
+        etag: 08bdfab9a8dad783031001
+        version_id: '1705057541061949'
+  - relpath: processed/test_data.pt
+    md5: 07649b0aea88dd68d872454702f4d5a7
+    size: 1083553958
+    cloud:
+      remote_storage:
+        etag: 08b7dfb4efdbd783031001
+        version_id: '1705057958309815'
+  - relpath: processed/test_labels.pt
+    md5: 5a5eaf053a6f1b8b1ce6e06c5d724993
+    size: 1764784
+    cloud:
+      remote_storage:
+        etag: 08a7a1cfa8dad783031001
+        version_id: '1705057541410983'
+  - relpath: processed/train_data.pt
+    md5: ebb4bb2e42520f4ae6fa92cdba43e8e4
+    size: 1083553963
+    cloud:
+      remote_storage:
+        etag: 088dc18cd3dbd783031001
+        version_id: '1705057898930317'
+  - relpath: processed/train_labels.pt
+    md5: 1ede45a2613c18b80fc73561acc05f72
+    size: 1764789
+    cloud:
+      remote_storage:
+        etag: 08f8989ca8dad783031001
+        version_id: '1705057540574328'
+  - relpath: raw/.gitkeep
+    md5: d41d8cd98f00b204e9800998ecf8427e
+    size: 0
+    cloud:
+      remote_storage:
+        etag: 08e689baa8dad783031001
+        version_id: '1705057541063910'
+  - relpath: raw/HateSpeechDataset.csv
+    md5: a267ef801806bba988d822c065b4e32d
+    size: 201550490
+    cloud:
+      remote_storage:
+        etag: 08e2f1a0dbdad783031001
+        version_id: '1705057647605986'
+  - relpath: raw/HateSpeechDatasetBalanced.csv
+    md5: 0893464ec55f32829a05cbbdcf61437c
+    size: 145122165
+    cloud:
+      remote_storage:
+        etag: 0895f2f7d0dad783031001
+        version_id: '1705057625962773'
