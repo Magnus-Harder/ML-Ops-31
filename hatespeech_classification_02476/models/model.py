@@ -85,13 +85,13 @@ class HatespeechClassification(LightningModule):
 
         self.log("val_loss", loss)
         self.log("val_acc", acc)
-        self.trainer.logger.table("val_confmatrix", self.binary_confmatrix.compute(), on_epoch=True, on_step=False)
+        #self.trainer.logger.table("val_confmatrix", self.binary_confmatrix.compute(), on_epoch=True, on_step=False)
 
         return loss
 
     # Optimizer for pytorch lightning
     def configure_optimizers(self):
-        return optim.Adam(self.parameters(), lr=1e-2)
+        return optim.Adam(self.parameters(), lr=self.learning_rate)
 
 
 if __name__ == "__main__":

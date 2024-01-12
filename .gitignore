@@ -1,12 +1,13 @@
 docs/site/
 /data/
-/models/
+/models
 /checkpoints/
 
 # logging folders
 /lightning_logs
 /outputs
 /wandb
+/models
 
 
 # test cache
