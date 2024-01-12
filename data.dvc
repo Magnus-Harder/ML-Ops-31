@@ -1,12 +1,5 @@
 outs:
-<<<<<<< HEAD
-- md5: b4921275c474af212232ba3a8b3a0b58.dir
-  size: 3198062971
-  nfiles: 12
-  hash: md5
-=======
 - hash: md5
->>>>>>> 88285f149032a6e323e01c4ba9f57b15834fbbbe
   path: data
   files:
   - relpath: processed/.gitkeep
