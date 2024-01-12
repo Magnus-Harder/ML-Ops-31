@@ -1,11 +1,12 @@
 # Imports for the model
+import torch
 from torch import nn, optim, exp
 from sentence_transformers import SentenceTransformer
 from pytorch_lightning import LightningModule
 from torchmetrics import Accuracy
-from torchmetrics.classification import MulticlassConfusionMatrix
-accuracy = Accuracy(task="multiclass", num_classes=2)
-confusionmatrix = MulticlassConfusionMatrix(num_classes=2)
+from torchmetrics.classification import BinaryConfusionMatrix
+
+
 
 
 # 'aditeyabaral/sentencetransformer-bert-base-cased'
@@ -15,6 +16,9 @@ class HatespeechClassification(LightningModule):
     ):
         super().__init__()
         self.learning_rate = learning_rate
+        self.accuracy = Accuracy(task="binary")
+        self.binary_confmatrix = BinaryConfusionMatrix(threshold=0.5)
+
 
         model_dict = {"Best": "all-mpnet-base-v2", "Fast": "all-MiniLM-L6-v2"}
 
@@ -38,7 +42,7 @@ class HatespeechClassification(LightningModule):
         )
 
         # Define the loss function
-        self.loss_fn = nn.BCELoss
+        self.loss_fn = nn.MSELoss()
 
     # Forward pass
     def forward(self, x):
@@ -58,8 +62,8 @@ class HatespeechClassification(LightningModule):
 
         # Get the predictions and calculate the loss
         pred = self(data)
-        loss = self.loss_fn(pred, target)
-        acc = accuracy(pred, target)
+        loss = self.loss_fn(pred.squeeze(), target)
+        acc = self.accuracy(pred.squeeze(), target)
 
         self.log("train_loss", loss)
         self.log("train_acc", acc)
@@ -74,16 +78,14 @@ class HatespeechClassification(LightningModule):
 
         # Get the predictions and calculate the loss
         pred = self(data)
-        loss = self.loss_fn(pred, target)
-        acc = accuracy(pred, target)
+        loss = self.loss_fn(pred.squeeze(), target)
+        acc = self.accuracy(pred.squeeze(), target)
 
         # Get the predictions
-        pred = pred.argmax(dim=1)
-        confmatrix = confusionmatrix(pred, target)
 
         self.log("val_loss", loss)
         self.log("val_acc", acc)
-        self.log("val_confmatrix", confmatrix)
+        self.trainer.logger.table("val_confmatrix", self.binary_confmatrix.compute(), on_epoch=True, on_step=False)
 
         return loss
 
@@ -106,6 +108,8 @@ if __name__ == "__main__":
     pred_scores = my_model(embeddings)
     print("Training Prediction scores:")
     print(pred_scores.shape)
+
+    loss = my_model.loss_fn(pred_scores.squeeze(), torch.tensor([0, 1]))
 
     # Test Prediction forward pass
     my_model.extrapolation = True

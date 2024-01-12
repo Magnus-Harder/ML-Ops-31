@@ -12,15 +12,31 @@ outs:
   - relpath: processed/all-MiniLM-L6-v2/test_data.pt
     md5: 4dd3196e27ea1202299eb2c94b2081f6
     size: 135445670
+    cloud:
+      remote_storage:
+        etag: 08bd83f7c9ffd783031001
+        version_id: '1705067543380413'
   - relpath: processed/all-MiniLM-L6-v2/test_labels.pt
     md5: 65ad92f192620a9f6d93debe9de98373
     size: 1764784
+    cloud:
+      remote_storage:
+        etag: 088288cfbeffd783031001
+        version_id: '1705067519656962'
   - relpath: processed/all-MiniLM-L6-v2/train_data.pt
     md5: ab71d09e96c06fc9d1fdf6039eb8418c
     size: 541777579
+    cloud:
+      remote_storage:
+        etag: 0883bfa7ddffd783031001
+        version_id: '1705067584020355'
   - relpath: processed/all-MiniLM-L6-v2/train_labels.pt
     md5: b35ea7f3136b200e8c8a1a67871e7b7e
     size: 1764789
+    cloud:
+      remote_storage:
+        etag: 08a99f98bfffd783031001
+        version_id: '1705067520855977'
   - relpath: processed/test_data.pt
     md5: 07649b0aea88dd68d872454702f4d5a7
     size: 1083553958

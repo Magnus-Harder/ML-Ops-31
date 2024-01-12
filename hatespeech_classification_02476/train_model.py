@@ -40,7 +40,7 @@ def train(cfg):
 
     # Load training data
     train_data = torch.load(f"{DATAPATH}/train_data.pt")
-    train_labels = torch.load(f"{DATAPATH}/train_labels.pt").long()
+    train_labels = torch.load(f"{DATAPATH}/train_labels.pt")
 
     # Move data to device
     train_data = train_data.to(device)
