@@ -37,34 +37,18 @@ outs:
       remote_storage:
         etag: 08a99f98bfffd783031001
         version_id: '1705067520855977'
-  - relpath: processed/test_data.pt
-    md5: 07649b0aea88dd68d872454702f4d5a7
-    size: 1083553958
-    cloud:
-      remote_storage:
-        etag: 08b7dfb4efdbd783031001
-        version_id: '1705057958309815'
-  - relpath: processed/test_labels.pt
-    md5: 5a5eaf053a6f1b8b1ce6e06c5d724993
+  - relpath: processed/all-mpnet-base-v2/test_data.pt
+    md5: d24e2ceb0cf265e3566aee64e75c0570
+    size: 270890150
+  - relpath: processed/all-mpnet-base-v2/test_labels.pt
+    md5: 65ad92f192620a9f6d93debe9de98373
     size: 1764784
-    cloud:
-      remote_storage:
-        etag: 08a7a1cfa8dad783031001
-        version_id: '1705057541410983'
-  - relpath: processed/train_data.pt
-    md5: ebb4bb2e42520f4ae6fa92cdba43e8e4
+  - relpath: processed/all-mpnet-base-v2/train_data.pt
+    md5: 238c84eeeab9e6626e73ddb2aaaff1d6
     size: 1083553963
-    cloud:
-      remote_storage:
-        etag: 088dc18cd3dbd783031001
-        version_id: '1705057898930317'
-  - relpath: processed/train_labels.pt
-    md5: 1ede45a2613c18b80fc73561acc05f72
+  - relpath: processed/all-mpnet-base-v2/train_labels.pt
+    md5: b35ea7f3136b200e8c8a1a67871e7b7e
     size: 1764789
-    cloud:
-      remote_storage:
-        etag: 08f8989ca8dad783031001
-        version_id: '1705057540574328'
   - relpath: raw/.gitkeep
     md5: d41d8cd98f00b204e9800998ecf8427e
     size: 0
