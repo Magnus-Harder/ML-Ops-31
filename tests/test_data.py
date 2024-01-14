@@ -20,7 +20,7 @@ def test_data_exists():
     assert os.path.isfile(fast_test_data_fpath), "Test data does not exist"
 
 
-@pytest.mark.skipif(not (os.path.isfile(train_data_fpath) or  os.path.isfile(train_data_fpath)), reason="Either training or test data is missing")
+@pytest.mark.skipif(not (os.path.isfile(fast_train_data_fpath) or  os.path.isfile(fast_train_data_fpath)), reason="Either training or test data is missing")
 def test_data_dimensions():
 
     #Load data
