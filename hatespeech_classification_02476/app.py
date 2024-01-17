@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from models.model import HatespeechClassification
+from hatespeech_classification_02476.models.model import HatespeechClassification
 import torch
 from google.cloud import storage
 from http import HTTPStatus
@@ -11,11 +11,11 @@ MODEL_FILE = "models/model.pt"
 client = storage.Client()
 bucket = client.get_bucket(BUCKET_NAME)
 blob = bucket.get_blob(MODEL_FILE)
-with open('data/tmp_model.pt', 'wb') as file_obj:
+with open('models/tmp_model.pt', 'wb') as file_obj:
     blob.download_to_file(file_obj)
 
 prediction_model = HatespeechClassification()
-prediction_model.load_state_dict(torch.load('data/tmp_model.pt'))
+prediction_model.load_state_dict(torch.load('models/tmp_model.pt'))
 prediction_model.eval()
 prediction_model.extrapolation = True
 
