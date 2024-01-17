@@ -10,6 +10,7 @@ WORKDIR /ML-Ops-31
 COPY requirements.txt requirements.txt
 COPY pyproject.toml pyproject.toml
 COPY hatespeech_classification_02476/ hatespeech_classification_02476/
+COPY data/ data/
 
 RUN pip install -r requirements.txt --no-cache-dir
 
@@ -17,7 +18,6 @@ RUN mkdir reports
 RUN mkdir models
 RUN mkdir reports/figures
 
-# Set up WandB
-RUN wandb login anonymously
+
 
 ENTRYPOINT ["python", "-u", "hatespeech_classification_02476/train_model.py"]
