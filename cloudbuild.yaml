@@ -1,7 +1,7 @@
 steps:
     - name: python
       entrypoint: bash
-      args: ['-c', 'pip install -U dvc dvc[gs];git init; dvc pull;']
+      args: ['-c', 'mkdir ML-Ops-31; cd ML-Ops-31; pip install -U dvc dvc[gs];git init; dvc pull;']
 
     # Step 1: Build the Docker image
     - name: "gcr.io/cloud-builders/docker"
