@@ -64,8 +64,11 @@ def test_validation_step(sample_data):
     sentences = torch.load(sample_data / "train_data.pt")
     labels = torch.load(sample_data / "train_labels.pt")
     
-    dataset = TensorDataset(model.embedder.encode(sentences, convert_to_tensor=True), labels)
-    dataloader = DataLoader(dataset, batch_size=1)
+    #dataset = TensorDataset(model.embedder.encode(sentences, convert_to_tensor=True), labels)
+    dataloader = torch.utils.data.DataLoader(
+        torch.utils.data.TensorDataset(model.embedder.encode(sentences, convert_to_tensor=True), batch_size=1, num_workers=4, persistent_workers=True)
+    )
+    #dataloader = DataLoader(dataset, batch_size=1)
     
     # Ensure the validation step works
     batch = next(iter(dataloader))
