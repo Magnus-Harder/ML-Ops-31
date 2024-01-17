@@ -10,21 +10,24 @@ steps:
               "build",
               "-f",
               "./dockerfiles/train_model_cloudbuild.dockerfile",
-              ".",
               "-t",
               "gcr.io/dtu-ml-ops-31/trainer:latest",
+              ".",
+              "-e",
+              "WANDB_API_KEY=$$WANDB_API_KEY",
+              "wandb:latest"
           ]
-#      secretEnv: ["WANDB_API_KEY"]
+      secretEnv: ["WANDB_API_KEY"]
 
     # Step 2: Push the Docker image to Artifact Registry
     - name: "gcr.io/cloud-builders/docker"
       args: ["push", "gcr.io/dtu-ml-ops-31/trainer:latest"]
 
 # Secrets
-# availableSecrets:
-#     secretManager:
-#         - versionName: projects/1025735580781/secrets/WandbAPI/versions/1
-#           env : 'WANDB_API_KEY'
+availableSecrets:
+    secretManager:
+        - versionName: projects/1025735580781/secrets/WandbAPI/versions/1
+          env : 'WANDB_API_KEY'
 
 
 images:
