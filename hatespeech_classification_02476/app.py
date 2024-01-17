@@ -5,17 +5,17 @@ from google.cloud import storage
 from http import HTTPStatus
 
 app = FastAPI()
-BUCKET_NAME = "mlops-31-data-bucket"
-MODEL_FILE = "models/model.pt"
+#BUCKET_NAME = "mlops-31-data-bucket"
+#MODEL_FILE = "models/model.pt"
 
-client = storage.Client()
-bucket = client.get_bucket(BUCKET_NAME)
-blob = bucket.get_blob(MODEL_FILE)
-with open('models/tmp_model.pt', 'wb') as file_obj:
-    blob.download_to_file(file_obj)
+#client = storage.Client()
+#bucket = client.get_bucket(BUCKET_NAME)
+#blob = bucket.get_blob(MODEL_FILE)
+#with open('models/tmp_model.pt', 'wb') as file_obj:
+#    blob.download_to_file(file_obj)
 
 prediction_model = HatespeechClassification()
-prediction_model.load_state_dict(torch.load('models/tmp_model.pt'))
+prediction_model.load_state_dict(torch.load('models/model.pt'))
 prediction_model.eval()
 prediction_model.extrapolation = True
 
