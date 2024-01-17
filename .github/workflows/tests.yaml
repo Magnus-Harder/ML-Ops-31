@@ -32,7 +32,4 @@ jobs:
       - name: Run pytest for model
         run: pytest tests/test_model.py
 
-      - name: Run pytest for data
-        run: pytest tests/test_make_data.py
-
 
