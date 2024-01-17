@@ -1,22 +1,21 @@
+# Import libraries
+import torch
 from pytorch_lightning import Trainer
 from models.model import HatespeechClassification
 from pytorch_lightning.loggers import WandbLogger
 from pytorch_lightning.callbacks import EarlyStopping
-
-
-import torch
 import hydra
 import omegaconf
 
-wandb_logger=WandbLogger(log_model="all")
-
-model_dict = {"Best": "all-mpnet-base-v2", "Fast": "all-MiniLM-L6-v2"}
 
 @hydra.main(version_base=None, config_path="conf", config_name="config")
 def train(cfg):
+    # Set up logging
+    wandb_logger=WandbLogger(log_model="all")
     wandb_logger.log_hyperparams(omegaconf.OmegaConf.to_container(cfg))
+
+    # Configure hyperparameters and data
     hparams = cfg["experiments"]
-    DATAPATH = f"data/processed/{model_dict[hparams['class_configuration']['model_type']]}"
 
     # Configure Device
     if torch.backends.mps.is_available():
@@ -39,6 +38,7 @@ def train(cfg):
                       callbacks=[early_stopping])
 
     # Load training data
+    DATAPATH = f"data/processed/{model.model_dict[hparams['class_configuration']['model_type']]}"
     train_data = torch.load(f"{DATAPATH}/train_data.pt")
     train_labels = torch.load(f"{DATAPATH}/train_labels.pt")
 
