@@ -15,4 +15,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 RUN mkdir reports
 
-CMD ["uvicorn","--port", "8000", "hatespeech_classification_02476.app:app"]
+CMD ["uvicorn", "hatespeech_classification_02476.app:app", "--host", "0.0.0.0", "--port", "8000"]
