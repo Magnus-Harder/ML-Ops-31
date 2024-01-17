@@ -2,9 +2,9 @@ from fastapi import FastAPI
 from models.model import HatespeechClassification
 import torch
 from google.cloud import storage
+from http import HTTPStatus
 
 app = FastAPI()
-model = HatespeechClassification()
 BUCKET_NAME = "mlops-31-data-bucket"
 MODEL_FILE = "models/model.pt"
 
@@ -18,9 +18,21 @@ prediction_model = HatespeechClassification()
 prediction_model.load_state_dict(torch.load('data/tmp_model.pt'))
 prediction_model.eval()
 prediction_model.extrapolation = True
-#model.load_state_dict(torch.load("models/model.pt"))
+
+@app.get("/")
+def root():
+    """ Health check."""
+    response = {
+        "message": HTTPStatus.OK.phrase,
+        "status-code": HTTPStatus.OK,
+    }
+    return response
 
 @app.post("/predict")
 def predict(input_data: str):
-    predictions = model(input_data) > 0.5
+    print("input_data: ", input_data)
+    print("type(input_data): ", type(input_data))
+    predictions = prediction_model(input_data) > 0.5
+    print("predictions: ", predictions)
     return {"predictions": predictions.tolist()}
+
