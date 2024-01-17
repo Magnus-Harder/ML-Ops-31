@@ -26,11 +26,7 @@ class HatespeechClassification(LightningModule):
         try:
             self.activation_func = activation_dict[activation]
         except:
-<<<<<<< HEAD
             raise ValueError("Activation function not found choose from 'relu', 'leaky_relu', 'sigmoid' or 'tanh'")
-=======
-            ValueError("Activation function not found choose from 'relu', 'leaky_relu', 'sigmoid' or 'tanh'")
->>>>>>> 782719c68904f620838af0263a27237d82d842be
 
         # Define Variables to Determine wheather model is extrapolating on user input
         self.extrapolation = False
@@ -39,11 +35,7 @@ class HatespeechClassification(LightningModule):
         try:
             self.embedder = SentenceTransformer(self.model_dict[model_type])
         except:
-<<<<<<< HEAD
             raise ValueError("Model not found choose from 'Best' (allmpnet-base-v2) or 'Fast' (all-MiniLM-L6-v2)")
-=======
-            ValueError("Model not found choose from 'Best' (allmpnet-base-v2) or 'Fast' (all-MiniLM-L6-v2)")
->>>>>>> 782719c68904f620838af0263a27237d82d842be
 
         # Get the embedding size
         embedding_size = self.embedder.get_sentence_embedding_dimension()
