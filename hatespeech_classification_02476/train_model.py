@@ -22,7 +22,7 @@ def train(cfg):
     if torch.backends.mps.is_available():
         print("Using MPS")
         device = 'cpu'
-    elif torch.backends.cuda.is_available():
+    elif torch.cuda.is_available():
         print("Using CUDA")
         device = 'cuda'
     else:

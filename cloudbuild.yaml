@@ -10,12 +10,9 @@ steps:
               "build",
               "-f",
               "./dockerfiles/train_model_cloudbuild.dockerfile",
-              "-t",
-              "gcr.io/dtu-ml-ops-31/trainer:latest",
               ".",
-              "-e",
-              "WANDB_API_KEY=$$WANDB_API_KEY",
-              "wandb:latest"
+              "-t",
+              "gcr.io/dtu-ml-ops-31/trainer:latest"
           ]
       secretEnv: ["WANDB_API_KEY"]
 
