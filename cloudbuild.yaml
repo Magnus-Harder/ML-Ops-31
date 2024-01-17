@@ -1,0 +1,23 @@
+steps:
+    - name: python
+      entrypoint: bash
+      args: ['-c', 'pip install -U dvc dvc[gs];git init; dvc pull;']
+
+    # Step 1: Build the Docker image
+    - name: "gcr.io/cloud-builders/docker"
+      args:
+          [
+              "build",
+              "-f",
+              "./dockerfiles/train_model_cloudbuild.dockerfile",
+              "-t",
+              "gcr.io/dtumlops-410721/trainer:latest",
+              ".",
+          ]
+
+    # Step 2: Push the Docker image to Artifact Registry
+    - name: "gcr.io/cloud-builders/docker"
+      args: ["push", "gcr.io/dtumlops-410721/trainer:latest"]
+
+images:
+    - "gcr.io/dtumlops-410721/trainer:latest"
