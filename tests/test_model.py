@@ -15,9 +15,11 @@ def sample_data(tmp_path):
     temp_data_dir.mkdir()
 
     # Create and save sample data
+    my_model = HatespeechClassification()
     sentences = ["This is an example sentence", "This is a fucking stupid sentence"]
+    embeddings = my_model.embedder.encode(sentences, convert_to_tensor=True)
     labels = torch.tensor([0, 1], dtype=torch.float32)
-    torch.save(sentences, temp_data_dir / "train_data.pt")
+    torch.save(embeddings, temp_data_dir / "train_data.pt")
     torch.save(labels, temp_data_dir / "train_labels.pt")
 
     # Return datapath
@@ -57,40 +59,51 @@ def test_model():
     assert pred_scores.shape == torch.Size([2, 1]), "Incorrect dimensionality of \"Fast\" model prediction output"
     assert best_scores.shape == torch.Size([2, 1]), "Incorrect dimensionality of \"Best\" model prediction output"
 
+    
 def test_validation_step(sample_data):
     model = HatespeechClassification()
+    model.eval()
     
     # Load sample data
-    sentences = torch.load(sample_data / "train_data.pt")
-    labels = torch.load(sample_data / "train_labels.pt")
-    
-    #dataset = TensorDataset(model.embedder.encode(sentences, convert_to_tensor=True), labels)
-    dataloader = torch.utils.data.DataLoader(
-        torch.utils.data.TensorDataset(model.embedder.encode(sentences, convert_to_tensor=True),labels), batch_size=1, num_workers=4, persistent_workers=True
-    )
-    #dataloader = DataLoader(dataset, batch_size=1)
-    
-    # Ensure the validation step works
-    batch = next(iter(dataloader))
-    loss = model.validation_step(batch)
-    assert isinstance(loss, torch.Tensor)
+    #sentences = torch.load(sample_data / "train_data.pt")
+    #labels = torch.load(sample_data / "train_labels.pt")
+    # Load sample training data
+    val_data = torch.load(sample_data / "train_data.pt")
+    val_labels = torch.load(sample_data / "train_labels.pt")
 
-    '''
+
+    # Create DataLoader
+    val_dataset = TensorDataset(val_data, val_labels)
+    val_loader = DataLoader(val_dataset, batch_size=2, shuffle=True)
+
+    # Ensure the validation step works
+    batch = next(iter(val_loader))
+    loss = model.validation_step(batch)
+    
+    # Check if loss is a scalar tensor
+    assert torch.is_tensor(loss) and loss.dim() == 0, "Training step did not return a scalar tensor"
+
+
+def test_training_step(sample_data):
+    # Load model
     model = HatespeechClassification()
-    sentences, labels = sample_data
-    #Load data
-    train_data = torch.load(fast_train_data_fpath)
-    test_data = torch.load(fast_test_data_fpath)
-    
-    #dataset = TensorDataset(model.embedder.encode(sentences, convert_to_tensor=True), labels)
-    dataloader = DataLoader(dataset, batch_size=1)
-    
-    # Ensure the validation step works
-    batch = next(iter(dataloader))
-    loss = model.validation_step(batch)
-    assert isinstance(loss, torch.Tensor)
-    '''
+    model.train()
 
+    # Load sample training data
+    train_data = torch.load(sample_data / "train_data.pt")
+    train_labels = torch.load(sample_data / "train_labels.pt")
+
+    # Create DataLoader
+    train_dataset = TensorDataset(train_data, train_labels)
+    train_loader = DataLoader(train_dataset, batch_size=2, shuffle=True)
+
+    # Run training step
+    for batch in train_loader:
+        loss = model.training_step(batch)
+
+    # Check if loss is a scalar tensor
+    assert torch.is_tensor(loss) and loss.dim() == 0, "Training step did not return a scalar tensor"
+    
 def test_optimizers():
     model = HatespeechClassification() # Do we need to test for all types of models?
     optimizer = model.configure_optimizers()
