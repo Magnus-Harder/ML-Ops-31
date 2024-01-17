@@ -114,11 +114,7 @@ class HatespeechClassification(LightningModule):
         try:
             optimizer = optimizer_dict[self.optimizer]
         except:
-<<<<<<< HEAD
             raise ValueError("Optimizer not found choose from 'Adam' or 'SGD'")
-=======
-            ValueError("Optimizer not found choose from 'Adam' or 'SGD'")
->>>>>>> 782719c68904f620838af0263a27237d82d842be
 
         return optimizer(self.parameters(), lr=self.learning_rate)
 
