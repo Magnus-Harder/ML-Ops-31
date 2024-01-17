@@ -6,7 +6,8 @@ from pytorch_lightning.loggers import WandbLogger
 from pytorch_lightning.callbacks import EarlyStopping
 import hydra
 import omegaconf
-
+from google.cloud import storage
+import pickle
 
 @hydra.main(version_base=None, config_path="conf", config_name="config")
 def train(cfg):
@@ -68,7 +69,13 @@ def train(cfg):
 
     # Save model
     torch.save(model.state_dict(), "models/model.pt")
+    BUCKET_NAME = "mlops-31-data-bucket"
+    MODEL_FILE = "models/model.pkl"
 
+    client = storage.Client()
+    bucket = client.get_bucket(BUCKET_NAME)
+    blob = bucket.get_blob(MODEL_FILE)
+    blob.upload_from_filename("models/model.pkl")
 
 if __name__ == "__main__":
     train()
