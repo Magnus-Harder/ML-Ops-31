@@ -17,4 +17,7 @@ RUN mkdir reports
 RUN mkdir models
 RUN mkdir reports/figures
 
+# Set up WandB
+RUN wandb login anonymously
+
 ENTRYPOINT ["python", "-u", "hatespeech_classification_02476/train_model.py"]
