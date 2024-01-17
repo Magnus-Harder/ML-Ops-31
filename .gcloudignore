@@ -1,4 +1,7 @@
 /data/
 /models/
 /env/
-/.dvc/
+#/.dvc/
+
+/.dvc/cache/
+/.dvc/tmp/
