@@ -7,8 +7,20 @@ pytest >= 7.4.3
 # linting
 ruff >= 0.1.3
 
+# Data verrsion control
+dvc >= 3.38.1
+dvc[gdrive]
+dvc[gs]
+
 # docs
 mkdocs <= 1.5.3
 mkdocs-material <= 9.4.6
 mkdocstrings <= 0.23.0
 mkdocstrings[python]>=0.18
+
+# For the model
+torch >= 2.1.0
+sentence-transformers >= 2.2.2
+pytorch-lightning == 2.1.3
+click >= 8.1.7
+pandas == 2.1.4
