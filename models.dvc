@@ -1,6 +1,25 @@
 outs:
-- md5: 1f2fe3442a084f819503dee508b14134.dir
-  size: 529510669
-  nfiles: 3
-  hash: md5
+- hash: md5
   path: models
+  files:
+  - relpath: hparams.pkl
+    md5: 46b2b64a62b2380b2f74f1ec3a3873d1
+    size: 1672
+    cloud:
+      remote_storage:
+        etag: 08e2e493e4f2e783031001
+        version_id: '1705613864530530'
+  - relpath: model.pt
+    md5: ae4bbbb27d8ea73244d66b2c82791184
+    size: 438412030
+    cloud:
+      remote_storage:
+        etag: 08ddfcb58ff3e783031001
+        version_id: '1705613955268189'
+  - relpath: model_online.pt
+    md5: ce899758b7199c38ba6d9ec0f4e1eb13
+    size: 91096967
+    cloud:
+      remote_storage:
+        etag: 08a88cdaf1f2e783031001
+        version_id: '1705613892945448'
