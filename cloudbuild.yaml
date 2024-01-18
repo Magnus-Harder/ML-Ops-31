@@ -36,8 +36,7 @@ steps:
     #   id: "Submit training job to Vertex AI"
 
     # Step 4: Submit the training job to Vertex AI for experiment 2
-    - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
-      entrypoint: gcloud
+    - name: "gcr.io/cloud-builders/gcloud"
       args:
           [
               "ai",
