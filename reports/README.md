@@ -176,7 +176,7 @@ The first line creates a virtual environment named venv with python 3.11 install
 > *experiments.*
 > Answer:
 
-We have used and kept kept the overall structure of the cookiecutter template. 
+We have used and kept kept the overall structure of the cookiecutter template.
 
 ### Question 6
 
@@ -221,7 +221,7 @@ We implemented tests for the data processing pipeline as well as the model class
 >
 > Answer:
 
-The total code coverage is 88 % The coverage only tells us how much of the code that can be executed. Even if the coverage is 100 % this does not mean that 100 % of the code does what is should, and hence can include errors. To ensure that the code does not have errors, we have to also design the tests such that we cover the potential errors.
+The total code coverage for the tests is 88 %. The code coverage only tells us how much of the code that can be executed without resulting in an execution error. Even if the coverage is 100 % this does not mean that 100 % of the code does what it should. Even if the code executes it can include errors and bugs errors. To ensure that the code does not have any errors, we have to also design tests such that we cover the potential errors. Since we can not cover every single possible error case, it might be difficult to reach a total security against errors. Having some tests is however better than having none.
 
 ### Question 9
 
@@ -378,7 +378,7 @@ docker run --name deploy --rm deploy:latest
 >
 > Answer:
 
-We have tried to write code in pairs, and when bugs occurred, used the debugger in VSCode to find and correct these. When training and deploying our model, the parts of the code which are most time costly are those related to configuring docker containers and pulling data from a remote drive. The code we have written does therefore not affect performance significantly in proportion to the processes we have no control over.
+We have tried to write code in pairs to identify bugs already when writing code, and when bugs did comde up, used the debugger in VSCode to find and correct these. When training and deploying our model, the parts of the code which are most time costly are those related to configuring docker containers and pulling data from a remote drive. Since we are using a third party framework for a large part of the neural network, and also for implementing training, our actual code contribution is quite small. The parts of the code we have written does therefore not affect performance significantly in proportion to the processes we have no control over. We therefore decided that it was not worth investing time on profiling the code in this project.
 
 ## Working in the cloud
 
