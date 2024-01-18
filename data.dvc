@@ -1,6 +1,88 @@
 outs:
-- md5: 0e1388d3736a1bdb415ed7abc9baff81.dir
-  size: 2385399163
-  nfiles: 12
-  hash: md5
+- hash: md5
   path: data
+  files:
+  - relpath: processed/.gitkeep
+    md5: d41d8cd98f00b204e9800998ecf8427e
+    size: 0
+    cloud:
+      remote_storage:
+        etag: 08aec8acb7b3e583031001
+        version_id: '1705528139654190'
+  - relpath: processed/all-MiniLM-L6-v2/test_data.pt
+    md5: 4dd3196e27ea1202299eb2c94b2081f6
+    size: 135445670
+    cloud:
+      remote_storage:
+        etag: 08cbcfd0fcb3e583031001
+        version_id: '1705528284948427'
+  - relpath: processed/all-MiniLM-L6-v2/test_labels.pt
+    md5: 65ad92f192620a9f6d93debe9de98373
+    size: 1764784
+    cloud:
+      remote_storage:
+        etag: 08b195d1b8b3e583031001
+        version_id: '1705528142351025'
+  - relpath: processed/all-MiniLM-L6-v2/train_data.pt
+    md5: ab71d09e96c06fc9d1fdf6039eb8418c
+    size: 541777579
+    cloud:
+      remote_storage:
+        etag: 08bd89c0e0b4e583031001
+        version_id: '1705528494392509'
+  - relpath: processed/all-MiniLM-L6-v2/train_labels.pt
+    md5: b35ea7f3136b200e8c8a1a67871e7b7e
+    size: 1764789
+    cloud:
+      remote_storage:
+        etag: 08fbcdd2b8b3e583031001
+        version_id: '1705528142374651'
+  - relpath: processed/all-mpnet-base-v2/test_data.pt
+    md5: d24e2ceb0cf265e3566aee64e75c0570
+    size: 270890150
+    cloud:
+      remote_storage:
+        etag: 088585b2aeb4e583031001
+        version_id: '1705528389304965'
+  - relpath: processed/all-mpnet-base-v2/test_labels.pt
+    md5: 65ad92f192620a9f6d93debe9de98373
+    size: 1764784
+    cloud:
+      remote_storage:
+        etag: 089f88fdb8b3e583031001
+        version_id: '1705528143070239'
+  - relpath: processed/all-mpnet-base-v2/train_data.pt
+    md5: 238c84eeeab9e6626e73ddb2aaaff1d6
+    size: 1083553963
+    cloud:
+      remote_storage:
+        etag: 08db9c8499b5e583031001
+        version_id: '1705528612949595'
+  - relpath: processed/all-mpnet-base-v2/train_labels.pt
+    md5: b35ea7f3136b200e8c8a1a67871e7b7e
+    size: 1764789
+    cloud:
+      remote_storage:
+        etag: 08ace480b9b3e583031001
+        version_id: '1705528143131180'
+  - relpath: raw/.gitkeep
+    md5: d41d8cd98f00b204e9800998ecf8427e
+    size: 0
+    cloud:
+      remote_storage:
+        etag: 089c9aa5b7b3e583031001
+        version_id: '1705528139533596'
+  - relpath: raw/HateSpeechDataset.csv
+    md5: a267ef801806bba988d822c065b4e32d
+    size: 201550490
+    cloud:
+      remote_storage:
+        etag: 08c28bbd99b4e583031001
+        version_id: '1705528345445826'
+  - relpath: raw/HateSpeechDatasetBalanced.csv
+    md5: 0893464ec55f32829a05cbbdcf61437c
+    size: 145122165
+    cloud:
+      remote_storage:
+        etag: 08b9959db7b3e583031001
+        version_id: '1705528139401913'
