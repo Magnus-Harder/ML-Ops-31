@@ -18,6 +18,9 @@ def train(cfg):
     # Configure hyperparameters and data
     hparams = cfg["experiments"]
 
+    # Get experiment name
+    experiment_name = hparams["name"]
+
     # Configure Device
     if torch.backends.mps.is_available():
         print("Using MPS")
@@ -70,7 +73,7 @@ def train(cfg):
     # Save model
     torch.save(model.state_dict(), "models/model.pt")
     BUCKET_NAME = "ml-ops-data"
-    MODEL_FILE = "models/model_online.pt"
+    MODEL_FILE = f"models/model_online_{experiment_name}.pt"
 
     client = storage.Client()
     bucket = client.bucket(BUCKET_NAME)
@@ -80,8 +83,7 @@ def train(cfg):
     with open("models/hparams.pkl", "wb") as f:
         pickle.dump(hparams, f)
     
-    blob = bucket.blob("models/hparams_online.pkl")
-
+    blob = bucket.blob(f"models/hparams_online_{experiment_name}.pkl")
     blob.upload_from_filename("models/hparams.pkl")
     
 
