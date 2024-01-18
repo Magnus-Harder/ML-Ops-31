@@ -10,14 +10,21 @@ steps:
               "build",
               "-f",
               "./dockerfiles/train_model_cloudbuild.dockerfile",
-              "-t",
-              "gcr.io/dtumlops-410721/trainer:latest",
               ".",
+              "-t",
+              "gcr.io/dtu-ml-ops-31/trainer:latest"
           ]
+           
 
     # Step 2: Push the Docker image to Artifact Registry
     - name: "gcr.io/cloud-builders/docker"
-      args: ["push", "gcr.io/dtumlops-410721/trainer:latest"]
+      args: ["push", "gcr.io/dtu-ml-ops-31/trainer:latest"]
+
+
+
 
 images:
-    - "gcr.io/dtumlops-410721/trainer:latest"
+    - "gcr.io/dtu-ml-ops-31/trainer:latest"
+
+
+    

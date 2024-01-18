@@ -10,14 +10,11 @@ import pandas as pd
 @click.argument("data", required=True)
 def predict(model_file, data_format, data):
     """Run prediction for a given model and data.
-
     Args:
         model: model to use for prediction
         dataloader: dataloader with batches
-
     Returns
         Tensor of shape [N, d] where N is the number of samples and d is the output dimension of the model
-
     """
     prediction_model = HatespeechClassification()
     prediction_model.load_state_dict(torch.load(model_file))
@@ -32,8 +29,10 @@ def predict(model_file, data_format, data):
         text_data = text_df[text_df.columns[0]].values
         predictions = prediction_model(text_data) > 0.5
 
+
     print(predictions)
     return predictions
 
 if __name__ == "__main__": 
     predict() 
+

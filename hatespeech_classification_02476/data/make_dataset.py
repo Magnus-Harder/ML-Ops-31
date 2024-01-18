@@ -34,7 +34,7 @@ def make_dataset(training_ratio, model_name):
         print("Using MPS")
         device = torch.device("mps")
         encoding_model.to("mps")
-    elif torch.backends.cuda.is_available():
+    elif torch.cuda.is_available():
         print("Using CUDA")
         device = torch.device("cuda")
         encoding_model.to("cuda")
