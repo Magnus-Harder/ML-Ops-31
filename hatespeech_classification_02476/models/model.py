@@ -26,7 +26,7 @@ class HatespeechClassification(LightningModule):
         try:
             self.activation_func = activation_dict[activation]
         except:
-            ValueError("Activation function not found choose from 'relu', 'leaky_relu', 'sigmoid' or 'tanh'")
+            raise ValueError("Activation function not found choose from 'relu', 'leaky_relu', 'sigmoid' or 'tanh'")
 
         # Define Variables to Determine wheather model is extrapolating on user input
         self.extrapolation = False
@@ -35,7 +35,7 @@ class HatespeechClassification(LightningModule):
         try:
             self.embedder = SentenceTransformer(self.model_dict[model_type])
         except:
-            ValueError("Model not found choose from 'Best' (allmpnet-base-v2) or 'Fast' (all-MiniLM-L6-v2)")
+            raise ValueError("Model not found choose from 'Best' (allmpnet-base-v2) or 'Fast' (all-MiniLM-L6-v2)")
 
         # Get the embedding size
         embedding_size = self.embedder.get_sentence_embedding_dimension()
@@ -114,7 +114,7 @@ class HatespeechClassification(LightningModule):
         try:
             optimizer = optimizer_dict[self.optimizer]
         except:
-            ValueError("Optimizer not found choose from 'Adam' or 'SGD'")
+            raise ValueError("Optimizer not found choose from 'Adam' or 'SGD'")
 
         return optimizer(self.parameters(), lr=self.learning_rate)
 
