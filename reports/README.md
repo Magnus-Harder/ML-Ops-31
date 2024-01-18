@@ -354,8 +354,16 @@ We made sure to configure all of our hyperparameters through our config files. T
 >
 > Answer:
 
---- question 15 fill here ---
+In our project, we developed two images. One for training and one for deployment. The training code can either be run on our onw laptops or in a docker image on a Google Cloud Compute instance. This is because that the  runner needs authentification to write the trained model weights to a Google Cloud Bucket, which we have not been able to do on a local run of a container.
 
+The deployment image can either be run locally or on Google Cloud Run. The local version can built with the following bash command:
+```bash
+docker build -f dockerfiles/deploy_model.dockerfile  . -t deploy:latest
+```
+And it can be deployed locally with the command
+```bash
+docker run --name deploy --rm deploy:latest
+```
 
 ### Question 16
 
