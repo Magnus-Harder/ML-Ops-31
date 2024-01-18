@@ -208,7 +208,7 @@ As part of the CI framework we set up an automatic linting pipeline using ruff. 
 >
 > Answer:
 
-We implemented tests for the data processing pipeline as well as the model class. The data tests check that the processed data exists and has the correct dimensionality. The model tests consist of checking that an instance of the model class can be initialized, that the output of the embedding and the classification layers have correct dimensions and that a full forward pass can be done. We also test that the training and validation methods for the Pytorch Lightning module class work correctly. (83)
+We implemented tests for the data processing pipeline as well as the model class. The data tests check that the processed data exists and has the correct dimensionality. The model tests consist of checking that an instance of the model class can be initialized, that the output of the embedding and the classification layers have correct dimensions and that a full forward pass can be done. We also test that the training and validation methods for the Pytorch Lightning module class work correctly. 
 
 ### Question 8
 
@@ -239,7 +239,7 @@ The total code coverage for the tests is 88 %. The code coverage only tells us h
 > Answer:
 
 Our workflow included using branches in accordance with the recommendations. It was decided that every time we began developing a new feature, a branch would be created specifically for this. Once everything worked as intended with the new feature, we would merge the branch into main and close it. This way, the open branches served as an overview of what features were currently under development, and it was ensured that the main branch always contained the latest working version of our project.\\
-We implemented a kind of informal pull request for main, which simply meant notifying the other team members when making changes to main. As we were all sitting together most of the time this worked quite smoothly for checking and fixing any issues and keeping everyone updated on changes. However, if we had been spending more time working separately, if would have been necessary to implement a formal version of pull request to ensure that we had clear guidelines for when a change would be pushed to main, so we did not accidentally impede each others work or end up with a broken version of the project in main. (191)
+For the first part of the project work we used a kind of informal pull request for main, which simply meant notifying the other team members when making changes to main. As we were all sitting together most of the time this worked quite smoothly for checking and fixing any issues and keeping everyone updated on changes. However, towards the end of the project we used GitHub's pull request when updating main. If we had been spending more time working separately, it would have been necessary to use the formal pull requests sooner to ensure that we had clear guidelines for when a change would be pushed to main, so we did not accidentally impede each others work or end up with a broken version of the project in main. 
 
 ### Question 10
 
@@ -254,7 +254,7 @@ We implemented a kind of informal pull request for main, which simply meant noti
 >
 > Answer:
 
-Yes, we did use DVC in our project. We are not sure if it really improved our project, since that we have been working with a fixed dataset. However, it could be beneficial if our dataset included live data that would have been added to our initial dataset during the project lifetime. In that case DVC would allow us to reproduce a previous state of the project i.e. training the model on a previous version of the data would allow us to recreate results. This might be very useful if the added data had a different composition than the original dataset in which case we might like to investigate or monitor how that influenced the predictions made by our model
+Yes, we did use DVC in our project. We are not sure if it really improved our project, since that we have been working with a fixed dataset. However, it could be beneficial if our dataset included live data that would have been added to our initial dataset during the project lifetime. In that case DVC would allow us to reproduce a previous state of the project i.e. training the model on a previous version of the data would allow us to recreate results. This might be very useful if the added data had a different composition than the original dataset in which case we might like to investigate or monitor how that influenced the predictions made by our model.
 
 ### Question 11
 
@@ -272,7 +272,7 @@ Yes, we did use DVC in our project. We are not sure if it really improved our pr
 
 For CI we have set up two GitHub workflows that are both configured to execute on push. One of them runs our unit tests which allows us to confirm that our python files do not appear to be broken by the changes. This one is runs the tests for all three main operating systems to ensure that it would run for all group members and anyone evaluating the project. We decided to only support python 3.11, as we decided it would be more beneficial to spend time on other aspects on the project than resolving dependency issues between packages. We implemented caching in the workflow file, however, the resulting speedup of the runtime of the workflow is only about 10 seconds. To be able to run the tests for our data we set up a GitHub secret to allow our CI to authenticate with our DVC storage solution.
 The other workflow takes care of linting by running "ruff format '*.py' which helps us maintain the desired formatting of our code files. In this workflow we only test for one operating system, Ubuntu, as it only concerns the formatting of the .py-files and thus there is nothing here that would be specific to an operating system. 
-Here is a link to a GitHub actions workflow: something... (214)
+Here is a link to a GitHub actions workflow: insert link... 
 
 ## Running code and tracking experiments
 
@@ -324,7 +324,7 @@ We can then run the experiment by executing the train_model.py script.
 
 In conjunction with hydra, we used Weights and Biases (W & B) to automatically log data and metrics related to the experiments. Logging with W & B was setup with pytorch lightning, which helped us secure that all relevant information from the various runs of our code was stored systematically and easily accessible later. 
 
-We made sure to configure all of our hyperparameters through our config files. This is an essential step of securing reproducibility of results (together with version control of the code and data), as explicitly defined hyperparameters prevents unintentional variations between different runs or environments (i.e. due to varying default settings). It also increases transparency, which makes it easier for others to understand and replicate the experiment. (120)
+We made sure to configure all of our hyperparameters through our config files. This is an essential step of securing reproducibility of results (together with version control of the code and data), as explicitly defined hyperparameters prevents unintentional variations between different runs or environments (i.e. due to varying default settings). It also increases transparency, which makes it easier for others to understand and replicate the experiment. 
 
 ### Question 14
 
@@ -571,10 +571,10 @@ The model training on the other hand was run on a Google Compute instance  which
 >
 > Answer:
 
-s232407 (Mattias): Model coding, unit tests, model training, prediction code, REST with Fastapi
+s232407 (Mattias): Model coding, unit tests, model training, prediction code, REST with FastAPI
 
 s180722 (Simon Daniel Eiriksson): Setting up Google project, Google Cloud Run, Storage, docker containers, REST API web-app.
 
 s204117 (Magnus Harder): Github repository, Model training deployment on Google Compute, model training
 
-s184227 (Amalie Roark): Unit tests, prediction code, REST with Fastapi 
+s184227 (Amalie Roark): Unit tests, CI workflows, prediction code, REST with FastAPI
