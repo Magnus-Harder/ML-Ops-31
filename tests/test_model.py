@@ -5,9 +5,6 @@ import pytest
 from torch.utils.data import DataLoader, TensorDataset
 from hatespeech_classification_02476.models.model import HatespeechClassification
 
-fast_train_data_fpath = os.path.join(_PATH_DATA, "processed", "all-MiniLM-L6-v2", "train_data.pt")
-fast_test_data_fpath = os.path.join(_PATH_DATA, "processed", "all-MiniLM-L6-v2", "test_data.pt")
-
 
 @pytest.fixture
 def sample_data(tmp_path):
@@ -25,7 +22,6 @@ def sample_data(tmp_path):
 
     # Return datapath
     return temp_data_dir
-    # return sentences, labels
 
 
 def test_model():
@@ -103,7 +99,7 @@ def test_training_step(sample_data):
 
 
 def test_optimizers():
-    model = HatespeechClassification()  # Do we need to test for all types of models?
+    model = HatespeechClassification()  
     optimizer = model.configure_optimizers()
 
     # Ensure optimizer is of the correct type

@@ -32,11 +32,15 @@ jobs:
       - name: Run pytest for model
         run: pytest tests/test_model.py
 
-      - uses: iterative/setup-dvc@v1
-      - name: Get data
-        run: dvc pull
-        env:
-          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
+      - name: Run pytest for make_data
+        run: pytest tests/test_make_data.py
 
-      - name: Run pytest for data
-        run: pytest tests/test_data.py
+      # Not in use for private bucket
+      #- uses: iterative/setup-dvc@v1
+      #- name: Get data
+      #  run: dvc pull
+      #  env:
+      #    GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
+
+      #- name: Run pytest for data
+      #  run: pytest tests/test_data.py
