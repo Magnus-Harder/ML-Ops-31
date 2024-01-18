@@ -153,7 +153,11 @@ pytorch_lightning is used to reduce boilerplate code via its model classes. We m
 >
 > Answer:
 
-We used pip for managing our dependencies. The list of dependencies can be auto-generated using \verb!pip freeze > requirements.txt!. To get a complete copy of our development environment, one could for example use conda and pip, and run the following commands:
+We used pip for managing our dependencies. The list of dependencies can be auto-generated using 
+```bash 
+pip freeze > requirements.txt
+```
+ To get a complete copy of our development environment, one could for example use conda and pip, and run the following commands:
 ```bash
 conda env create --name venv python=3.11
 pip install -r requirements.txt
