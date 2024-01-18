@@ -20,4 +20,4 @@ RUN mkdir reports/figures
 
 
 
-ENTRYPOINT ["python", "-u", "hatespeech_classification_02476/train_model.py"]
+CMD ["python", "-u", "hatespeech_classification_02476/train_model.py"]
