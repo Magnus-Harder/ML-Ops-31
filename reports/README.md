@@ -153,9 +153,11 @@ pytorch_lightning is used to reduce boilerplate code via its model classes. We m
 >
 > Answer:
 
-We used pip for managing our dependencies. The list of dependencies was auto-generated using \verb!pip freeze > requirements.txt!. To get a complete copy of our development environment, one could for example use conda and pip, and run the following commands:\\
-conda env create --name venv python=3.11\\
+We used pip for managing our dependencies. The list of dependencies was auto-generated using \verb!pip freeze > requirements.txt!. To get a complete copy of our development environment, one could for example use conda and pip, and run the following commands:
+```bash
+conda env create --name venv python=3.11
 pip install -r requirements.txt
+```
 
 ### Question 5
 
@@ -406,14 +408,13 @@ We used Google Cloud Compute Engine to run the docker image for training models.
 > **You can take inspiration from [this figure](figures/bucket.png).**
 >
 > Answer:
-
-[Storage image](figures/storage1.png)
+![Storage image](figures/storage1.png)
 <p align="center">
   <img src="figures/storage1.png" width="1000">
 </p>
 
 
-[Storage image](figures/storage2.png)
+![Storage image](figures/storage2.png)
 <p align="center">
   <img src="figures/storage2.png" width="1000">
 </p>
@@ -426,7 +427,7 @@ We used Google Cloud Compute Engine to run the docker image for training models.
 >
 > Answer:
 
-[Container registry image](figures/container_registry.png)
+![Container registry image](figures/container_registry.png)
 <p align="center">
   <img src="figures/container_registry.png" width="1000">
 </p>
@@ -438,7 +439,7 @@ We used Google Cloud Compute Engine to run the docker image for training models.
 >
 > Answer:
 
-[Build hisotry iamge file](figures/build_history.png)
+![Build hisotry iamge file](figures/build_history.png)
 <p align="center">
   <img src="figures/build_history.png" width="1000">
 </p>
