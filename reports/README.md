@@ -72,13 +72,13 @@ end of the project.
 
 ### Week 2
 
-* [] Write unit tests related to the data part of your code
-* [] Write unit tests related to model construction and or model training
+* [x] Write unit tests related to the data part of your code
+* [x] Write unit tests related to model construction and or model training
 * [x] Calculate the coverage.
 * [x] Get some continuous integration running on the github repository
 * [x] Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup
 * [x] Create a trigger workflow for automatically building your docker images
-* [] Get your model training in GCP using either the Engine or Vertex AI
+* [x] Get your model training in GCP using either the Engine or Vertex AI
 * [x] Create a FastAPI application that can do inference using your model
 * [] If applicable, consider deploying the model locally using torchserve
 * [x] Deploy your model in GCP using either Functions or Run as the backend
@@ -525,9 +525,15 @@ The github repository created from the cookiecutter template is the central elem
 >
 > Answer:
 
-In our project, we encountered significant challenges related to the integration of Google Cloud Platform (GCP) services and Data Version Control (DVC). These difficulties centered around the orchestration of data management, model training, and deployment in a cloud-based environment. 
+In our project, we encountered significant challenges related to the integration of Google Cloud Platform (GCP) services and Data Version Control (DVC). These difficulties centered around the orchestration of data management, model training, and deployment in a cloud-based environment.
+
 Initially, integrating GCP into our workflow took time to sort out. Configuring authentication, managing service accounts, and ensuring proper access permissions between GitHub, DVC, GCP and our local environments proved to be a tricky undertaking.
-To overcome these challenges we would go through the exercises for each and try to make it work in the practice project before implementing it for our project. We would also ask Nicki and the TA's for guidance, but in some cases they also struggled to assist us. We tried following different approaches before finally arriving at an understanding of how we could set up some of the desired functionality using service accounts. (147)
+
+To overcome these challenges we would go through the exercises for each and try to make it work in the practice project before implementing it for our project. We would also ask Nicki and the TA's for guidance, but in some cases they also struggled to assist us. We tried following different approaches before finally arriving at an understanding of how we could set up some of the desired functionality using service accounts.
+
+In the end, we resolved this issue by letting the prediction step run as a Google Cloud Run service, that would run a docker image with the trained model built in. The build process would then read the trained model from a public Google Bucket. 
+
+The model training on the other hand was run on a Google Compute instance  which gave us less problems in terms of authentification.
 
 ### Question 27
 
@@ -544,4 +550,10 @@ To overcome these challenges we would go through the exercises for each and try 
 >
 > Answer:
 
---- question 27 fill here ---
+s232407 (Mattias): Model coding, unit tests, model training, prediction code, REST with Fastapi
+
+s180722 (Simon Daniel Eiriksson): Setting up Google project, Google Cloud Run, Storage, docker containers, REST API web-app.
+
+s204117 (Magnus Harder): Github repository, Model training deployment on Google Compute, model training
+
+s184227 (Amalie Roark): Unit tests, prediction code, REST with Fastapi 

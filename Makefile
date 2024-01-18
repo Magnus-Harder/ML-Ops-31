@@ -4,7 +4,7 @@
 # GLOBALS                                                                       #
 #################################################################################
 
-PROJECT_NAME = 02476 Hatespeech Classification
+PROJECT_NAME = hatespeech_classification_02476
 PYTHON_VERSION = 3.11
 PYTHON_INTERPRETER = python
 
