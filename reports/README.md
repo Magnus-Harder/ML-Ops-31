@@ -272,7 +272,7 @@ Yes, we did use DVC in our project. We are not sure if it really improved our pr
 
 For CI we have set up two GitHub workflows that are both configured to execute on push. One of them runs our unit tests which allows us to confirm that our python files do not appear to be broken by the changes. This one is runs the tests for all three main operating systems to ensure that it would run for all group members and anyone evaluating the project. We decided to only support python 3.11, as we decided it would be more beneficial to spend time on other aspects on the project than resolving dependency issues between packages. We implemented caching in the workflow file, however, the resulting speedup of the runtime of the workflow is only about 10 seconds. To be able to run the tests for our data we set up a GitHub secret to allow our CI to authenticate with our DVC storage solution.
 The other workflow takes care of linting by running "ruff format '*.py' which helps us maintain the desired formatting of our code files. In this workflow we only test for one operating system, Ubuntu, as it only concerns the formatting of the .py-files and thus there is nothing here that would be specific to an operating system. 
-Here is a link to a GitHub actions workflow: insert link... 
+Here is a link to a GitHub actions workflow: https://github.com/Magnus-Harder/ML-Ops-31/actions/runs/7576061122/job/20634027601
 
 ## Running code and tracking experiments
 
@@ -577,4 +577,4 @@ s180722 (Simon Daniel Eiriksson): Setting up Google project, Google Cloud Run, S
 
 s204117 (Magnus Harder): Github repository, Model training deployment on Google Compute, model training
 
-s184227 (Amalie Roark): Unit tests, CI workflows, prediction code, REST with FastAPI
+s184227 (Amalie Roark): Unit tests, config files, CI workflows, prediction code, REST with FastAPI
