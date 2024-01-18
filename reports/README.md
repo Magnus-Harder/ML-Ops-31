@@ -514,6 +514,12 @@ We spend a total of $16.44. The biggest expense was $8.01 on cloud storage and t
 
 The github repository created from the cookiecutter template is the central element of the project setup. From a user perspective, we can either clone the code repository and run the docker images that are available in the .docker
 
+
+![Project flowchart](figures/Project_Flowchart.drawio.png)
+<p align="center">
+  <img src="figures/Project_Flowchart.drawio.png" width="1000">
+</p>
+
 ### Question 26
 
 > **Discuss the overall struggles of the project. Where did you spend most time and what did you do to overcome these**
