@@ -1,4 +1,3 @@
-# Base image
 FROM python:3.11-slim
 
 RUN apt update && \
@@ -10,14 +9,10 @@ WORKDIR /ML-Ops-31
 COPY requirements.txt requirements.txt
 COPY pyproject.toml pyproject.toml
 COPY hatespeech_classification_02476/ hatespeech_classification_02476/
-COPY data/ data/
+COPY models/ models/
 
-RUN pip install -r requirements.txt --no-cache-dir
+RUN pip install --no-cache-dir -r requirements.txt
 
 RUN mkdir reports
-RUN mkdir models
-RUN mkdir reports/figures
 
-
-
-CMD ["python", "-u", "hatespeech_classification_02476/train_model.py"]
+CMD ["uvicorn", "hatespeech_classification_02476.app:app", "--host", "0.0.0.0", "--port", "8080"]

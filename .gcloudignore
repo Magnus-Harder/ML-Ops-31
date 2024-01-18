@@ -1,7 +1,15 @@
-/data/
+# Directories
 /models/
 /env/
-#/.dvc/
+/notebooks/
 
+# Data
+/data/
 /.dvc/cache/
 /.dvc/tmp/
+
+# Loggings
+/wandb/
+/ouputs/
+/lightning_logs/
+/

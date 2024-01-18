@@ -6,7 +6,8 @@ from pytorch_lightning.loggers import WandbLogger
 from pytorch_lightning.callbacks import EarlyStopping
 import hydra
 import omegaconf
-
+from google.cloud import storage
+import pickle
 
 @hydra.main(version_base=None, config_path="conf", config_name="config")
 def train(cfg):
@@ -17,11 +18,14 @@ def train(cfg):
     # Configure hyperparameters and data
     hparams = cfg["experiments"]
 
+    # Get experiment name
+    experiment_name = hparams["name"]
+
     # Configure Device
     if torch.backends.mps.is_available():
         print("Using MPS")
-        device = "cpu"
-    elif torch.backends.cuda.is_available():
+        device = 'cpu'
+    elif torch.cuda.is_available():
         print("Using CUDA")
         device = "cuda"
     else:
@@ -76,7 +80,20 @@ def train(cfg):
 
     # Save model
     torch.save(model.state_dict(), "models/model.pt")
+    BUCKET_NAME = "ml-ops-data"
+    MODEL_FILE = f"models/model_online_{experiment_name}.pt"
 
+    client = storage.Client()
+    bucket = client.bucket(BUCKET_NAME)
+    blob = bucket.blob(MODEL_FILE)
+    blob.upload_from_filename("models/model.pt")
+    # Save hyperparameters
+    with open("models/hparams.pkl", "wb") as f:
+        pickle.dump(hparams, f)
+    
+    blob = bucket.blob(f"models/hparams_online_{experiment_name}.pkl")
+    blob.upload_from_filename("models/hparams.pkl")
+    
 
 if __name__ == "__main__":
     train()
