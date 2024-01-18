@@ -478,7 +478,7 @@ https://deploy-vout6xuvda-uc.a.run.app/predict?input_data=just by being able to 
 >
 > Answer:
 
-We have not implemented monitoring of our deployed model. Monitoring could help us track the performance of our model as time progresses. We would then be able to detect when relevant metrics such as prediction accuracy, runtime start looking bad, and take an action to remedy this.
+We have not implemented monitoring of our deployed model because of time constraints. Setting up some proper monitoring for the application could help us gradually track the performance of our model as time progresses. We would then be able to detect when relevant metrics such as prediction accuracy would decrease and could take actions to remedy this. This could happen for example due to data drifting. We would also be able to identify potential bottlenecks that would come up if our application would be used by many different users at the same time. Continuously monitoring and updating a machine learning deployment is essential to keep its performance up over time.
 
 ### Question 24
 
