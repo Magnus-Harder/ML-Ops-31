@@ -153,12 +153,12 @@ pytorch_lightning is used to reduce boilerplate code via its model classes. We m
 >
 > Answer:
 
-We used pip for managing our dependencies. The list of dependencies was auto-generated using \verb!pip freeze > requirements.txt!. To get a complete copy of our development environment, one could for example use conda and pip, and run the following commands:
+We used pip for managing our dependencies. The list of dependencies can be auto-generated using \verb!pip freeze > requirements.txt!. To get a complete copy of our development environment, one could for example use conda and pip, and run the following commands:
 ```bash
 conda env create --name venv python=3.11
 pip install -r requirements.txt
 ```
-
+The first line creates a virtual environment named venv with python 3.11 installed in it. The second line takes all packages of specified version in the requirements.txt file and installs them as python packages in the virtual envirnoment. It is possible to use any other virtual environment manager instead of conda.
 ### Question 5
 
 > **We expect that you initialized your project using the cookiecutter template. Explain the overall structure of your**
