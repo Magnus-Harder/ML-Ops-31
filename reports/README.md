@@ -498,6 +498,16 @@ We spend a total of $16.44. The biggest expense was $8.01 on cloud storage and t
 >
 > Answer:
 
+The main building block of the project is the project made from a cookiecutter template. This contains code and config files, which are synced with our common Github repository. Apart from this, we have data files and model files, which are synced through dvc.
+
+Whenever someone creates a pull request from a development branch to the main branch, a Github action is triggered, which carry out a range of checks on the code. 
+
+The code consist of two main parts: one that trains models, according to config files, and another that runs a REST API on Google Cloud Run. The training code uses Hydra for configuration, and Weights and Biases for metrics reporting.  
+
+Whenever new code is integrated into the main branch on Github, a Google Cloud Build automatically create a new docker image to train using the new code. 
+
+When this docker image is run, a new model is posted on a Google Bucket. This new model is then used when rebuilding the docker image containing the web application.
+
 The github repository created from the cookiecutter template is the central element of the project setup. From a user perspective, we can either clone the code repository and run the docker images that are available in the .docker
 
 
