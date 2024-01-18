@@ -78,7 +78,8 @@ urllib3==2.1.0
 wandb==0.16.2
 webencodings==0.5.1
 yarl==1.9.4
-
+uvicorn>=0.26.0
+fastapi >= 0.109.0
 # Data Storage 
 dvc >= 3.38.1
 dvc[gdrive]
