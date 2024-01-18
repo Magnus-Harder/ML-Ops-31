@@ -69,13 +69,13 @@ def train(cfg):
 
     # Save model
     torch.save(model.state_dict(), "models/model.pt")
-    # BUCKET_NAME = "mlops-31-data-bucket"
-    # MODEL_FILE = "models/model.pt"
+    BUCKET_NAME = "ml-ops-data"
+    MODEL_FILE = "models/model_online.pt"
 
-    # client = storage.Client()
-    # bucket = client.get_bucket(BUCKET_NAME)
-    # blob = bucket.get_blob(MODEL_FILE)
-    # blob.upload_from_filename("models/model.pt")
+    client = storage.Client()
+    bucket = client.get_bucket(BUCKET_NAME)
+    blob = bucket.get_blob(MODEL_FILE)
+    blob.upload_from_filename("models/model.pt")
 
 if __name__ == "__main__":
     train()
