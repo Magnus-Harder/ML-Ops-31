@@ -409,16 +409,8 @@ We used Google Cloud Compute Engine to run the docker image for training models.
 >
 > Answer:
 ![Storage image](figures/storage1.png)
-<p align="center">
-  <img src="figures/storage1.png" width="1000">
-</p>
-
 
 ![Storage image](figures/storage2.png)
-<p align="center">
-  <img src="figures/storage2.png" width="1000">
-</p>
-
 
 ### Question 20
 
@@ -428,9 +420,6 @@ We used Google Cloud Compute Engine to run the docker image for training models.
 > Answer:
 
 ![Container registry image](figures/container_registry.png)
-<p align="center">
-  <img src="figures/container_registry.png" width="1000">
-</p>
 
 ### Question 21
 
@@ -440,9 +429,6 @@ We used Google Cloud Compute Engine to run the docker image for training models.
 > Answer:
 
 ![Build hisotry iamge file](figures/build_history.png)
-<p align="center">
-  <img src="figures/build_history.png" width="1000">
-</p>
 
 ### Question 22
 
@@ -516,9 +502,6 @@ The github repository created from the cookiecutter template is the central elem
 
 
 ![Project flowchart](figures/Project_Flowchart.drawio.png)
-<p align="center">
-  <img src="figures/Project_Flowchart.drawio.png" width="1000">
-</p>
 
 ### Question 26
 
