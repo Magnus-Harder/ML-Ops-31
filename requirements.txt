@@ -78,7 +78,12 @@ urllib3==2.1.0
 wandb==0.16.2
 webencodings==0.5.1
 yarl==1.9.4
+
+# Data Storage 
 dvc >= 3.38.1
 dvc[gdrive]
 dvc[gs]
+
+
+
 

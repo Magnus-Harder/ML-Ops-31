@@ -3,6 +3,7 @@ import click
 import os
 from models.model import HatespeechClassification
 import pandas as pd
+
 @click.command()
 @click.argument("model_file", required=False, default="models/model.pt")
 @click.argument("data_format", required=True, default="string")
@@ -19,13 +20,19 @@ def predict(model_file, data_format, data):
     prediction_model.load_state_dict(torch.load(model_file))
     prediction_model.eval()
     prediction_model.extrapolation = True
+
     if data_format == "string":
         predictions = prediction_model(data) > 0.5
+
     elif data_format == "csv":
         text_df = pd.read_csv(data)
         text_data = text_df[text_df.columns[0]].values
         predictions = prediction_model(text_data) > 0.5
+
+
     print(predictions)
     return predictions
-if __name__ == "__main__":
-    predict()
+
+if __name__ == "__main__": 
+    predict() 
+
