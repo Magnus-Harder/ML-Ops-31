@@ -1,5 +1,5 @@
 steps:
-    Step 0: Install DVC and pull data
+    # Step 0: Install DVC and pull data
     - name: python
       entrypoint: bash
       args: ['-c', 'mkdir ML-Ops-31; cd ML-Ops-31; pip install -U dvc dvc[gs];git init; dvc pull;']
