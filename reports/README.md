@@ -176,7 +176,7 @@ The first line creates a virtual environment named venv with python 3.11 install
 > *experiments.*
 > Answer:
 
-We have used and kept kept the overall structure of the cookiecutter template. 
+We have used and kept kept the overall structure of the cookiecutter template.
 
 ### Question 6
 
@@ -370,7 +370,7 @@ We made sure to configure all of our hyperparameters through our config files. T
 >
 > Answer:
 
-We have tried to write code in pairs, and when bugs occurred, used the debugger in VSCode to find and correct these. When training and deploying our model, the parts of the code which are most time costly are those related to configuring docker containers and pulling data from a remote drive. The code we have written does therefore not affect performance significantly in proportion to the processes we have no control over.
+We have tried to write code in pairs to identify bugs already when writing code, and when bugs did comde up, used the debugger in VSCode to find and correct these. When training and deploying our model, the parts of the code which are most time costly are those related to configuring docker containers and pulling data from a remote drive. Since we are using a third party framework for a large part of the neural network, and also for implementing training, our actual code contribution is quite small. The parts of the code we have written does therefore not affect performance significantly in proportion to the processes we have no control over. We therefore decided that it was not worth investing time on profiling the code in this project.
 
 ## Working in the cloud
 
