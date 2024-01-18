@@ -1,6 +1,11 @@
 outs:
-- md5: bde2d97284020885a066a0a11f4690aa.dir
-  size: 91089406
-  nfiles: 1
-  hash: md5
+- hash: md5
   path: models
+  files:
+  - relpath: model.pt
+    md5: 65241ba26906ee09c5d9f054f4004342
+    size: 91089406
+    cloud:
+      remote_storage:
+        etag: 08d6baadbacce683031001
+        version_id: '1705569216585046'
