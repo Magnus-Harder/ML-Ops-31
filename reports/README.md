@@ -221,7 +221,7 @@ We implemented tests for the data processing pipeline as well as the model class
 >
 > Answer:
 
-The total code coverage is 88 % The coverage only tells us how much of the code that can be executed. Even if the coverage is 100 % this does not mean that 100 % of the code does what is should, and hence can include errors. To ensure that the code does not have errors, we have to also design the tests such that we cover the potential errors.
+The total code coverage for the tests is 88 %. The code coverage only tells us how much of the code that can be executed without resulting in an execution error. Even if the coverage is 100 % this does not mean that 100 % of the code does what it should. Even if the code executes it can include errors and bugs errors. To ensure that the code does not have any errors, we have to also design tests such that we cover the potential errors. Since we can not cover every single possible error case, it might be difficult to reach a total security against errors. Having some tests is however better than having none.
 
 ### Question 9
 
