@@ -73,9 +73,17 @@ def train(cfg):
     MODEL_FILE = "models/model_online.pt"
 
     client = storage.Client()
-    bucket = client.get_bucket(BUCKET_NAME)
-    blob = bucket.get_blob(MODEL_FILE)
+    bucket = client.bucket(BUCKET_NAME)
+    blob = bucket.blob(MODEL_FILE)
     blob.upload_from_filename("models/model.pt")
+    # Save hyperparameters
+    with open("models/hparams.pkl", "wb") as f:
+        pickle.dump(hparams, f)
+    
+    blob = bucket.blob("models/hparams_online.pkl")
+
+    blob.upload_from_filename("models/hparams.pkl")
+    
 
 if __name__ == "__main__":
     train()
