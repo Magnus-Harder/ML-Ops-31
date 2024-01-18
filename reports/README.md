@@ -50,38 +50,38 @@ end of the project.
 
 ### Week 1
 
-* [ ] Create a git repository
-* [ ] Make sure that all team members have write access to the github repository
-* [ ] Create a dedicated environment for you project to keep track of your packages
-* [ ] Create the initial file structure using cookiecutter
-* [ ] Fill out the `make_dataset.py` file such that it downloads whatever data you need and
-* [ ] Add a model file and a training script and get that running
-* [ ] Remember to fill out the `requirements.txt` file with whatever dependencies that you are using
-* [ ] Remember to comply with good coding practices (`pep8`) while doing the project
-* [ ] Do a bit of code typing and remember to document essential parts of your code
-* [ ] Setup version control for your data or part of your data
-* [ ] Construct one or multiple docker files for your code
-* [ ] Build the docker files locally and make sure they work as intended
-* [ ] Write one or multiple configurations files for your experiments
-* [ ] Used Hydra to load the configurations and manage your hyperparameters
-* [ ] When you have something that works somewhat, remember at some point to to some profiling and see if
+* [x] Create a git repository
+* [x] Make sure that all team members have write access to the github repository
+* [x] Create a dedicated environment for you project to keep track of your packages
+* [x] Create the initial file structure using cookiecutter
+* [x] Fill out the `make_dataset.py` file such that it downloads whatever data you need and
+* [x] Add a model file and a training script and get that running
+* [x] Remember to fill out the `requirements.txt` file with whatever dependencies that you are using
+* [x] Remember to comply with good coding practices (`pep8`) while doing the project
+* [x] Do a bit of code typing and remember to document essential parts of your code
+* [x] Setup version control for your data or part of your data
+* [x] Construct one or multiple docker files for your code
+* [x] Build the docker files locally and make sure they work as intended
+* [x] Write one or multiple configurations files for your experiments
+* [x] Used Hydra to load the configurations and manage your hyperparameters
+* [] When you have something that works somewhat, remember at some point to to some profiling and see if
       you can optimize your code
-* [ ] Use Weights & Biases to log training progress and other important metrics/artifacts in your code. Additionally,
+* [x] Use Weights & Biases to log training progress and other important metrics/artifacts in your code. Additionally,
       consider running a hyperparameter optimization sweep.
-* [ ] Use Pytorch-lightning (if applicable) to reduce the amount of boilerplate in your code
+* [x] Use Pytorch-lightning (if applicable) to reduce the amount of boilerplate in your code
 
 ### Week 2
 
-* [ ] Write unit tests related to the data part of your code
-* [ ] Write unit tests related to model construction and or model training
-* [ ] Calculate the coverage.
-* [ ] Get some continuous integration running on the github repository
-* [ ] Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup
-* [ ] Create a trigger workflow for automatically building your docker images
-* [ ] Get your model training in GCP using either the Engine or Vertex AI
-* [ ] Create a FastAPI application that can do inference using your model
-* [ ] If applicable, consider deploying the model locally using torchserve
-* [ ] Deploy your model in GCP using either Functions or Run as the backend
+* [] Write unit tests related to the data part of your code
+* [] Write unit tests related to model construction and or model training
+* [x] Calculate the coverage.
+* [x] Get some continuous integration running on the github repository
+* [x] Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup
+* [x] Create a trigger workflow for automatically building your docker images
+* [] Get your model training in GCP using either the Engine or Vertex AI
+* [x] Create a FastAPI application that can do inference using your model
+* [] If applicable, consider deploying the model locally using torchserve
+* [x] Deploy your model in GCP using either Functions or Run as the backend
 
 ### Week 3
 
@@ -105,7 +105,7 @@ end of the project.
 >
 > Answer:
 
---- question 1 fill here ---
+31
 
 ### Question 2
 > **Enter the study number for each member in the group**
@@ -116,7 +116,7 @@ end of the project.
 >
 > Answer:
 
---- question 2 fill here ---
+s232407 (Mattias), s180722 (Simon Daniel Eiriksson), s204117 (Magnus Harder), s184227 (Amalie Roark)
 
 ### Question 3
 > **What framework did you choose to work with and did it help you complete the project?**
@@ -129,7 +129,12 @@ end of the project.
 >
 > Answer:
 
---- question 3 fill here ---
+We used the third-party frameworks:
+- item sentence-transformers
+- item pytorch_lightning
+
+The sentence-transformers framework lets us create feature embeddings for raw text data using a selection of pretrained models. This makes it possible to train a simple classification model with the feature embeddings as input, which reduces training time compared to if we would have to learn the feature embeddings from scratch. It can also be argued that using the pretrained embedding models significantly reuduces the complexity of the model design, which effectively leads to a working classification model with less work.
+pytorch_lightning is used to reduce boilerplate code via its model classes. We mostly leveraged it to write clean and simple training scripts, and automatically logging together with weights and biases.
 
 ## Coding environment
 
@@ -148,7 +153,9 @@ end of the project.
 >
 > Answer:
 
---- question 4 fill here ---
+We used pip for managing our dependencies. The list of dependencies was auto-generated using \verb!pip freeze > requirements.txt!. To get a complete copy of our development environment, one could for example use conda and pip, and run the following commands:\\
+conda env create --name venv python=3.11\\
+pip install -r requirements.txt
 
 ### Question 5
 
@@ -163,7 +170,7 @@ end of the project.
 > *experiments.*
 > Answer:
 
---- question 5 fill here ---
+We have used and kept kept the overall structure of the cookiecutter template. 
 
 ### Question 6
 
@@ -174,7 +181,7 @@ end of the project.
 >
 > Answer:
 
---- question 6 fill here ---
+As part of the CI framework we set up an automatic linting pipeline using ruff. While writing the code for data manipulation, model training and deployment, we tried to follow PEP8 conventions. In the code for the FastAPI application we used typing to ensure correct input for the relevant functions. For large projects, it is important that all collaborators can quickly understand different parts of the code base. Using standard formats for writing the code makes this easier, and consequently makes the development process more effective.
 
 ## Version control
 
@@ -193,7 +200,7 @@ end of the project.
 >
 > Answer:
 
---- question 7 fill here ---
+We implemented tests for the data processing pipeline as well as the model class. The data tests check that the processed data exists and has the correct dimensionality. The model tests consist of checking that an instance of the model class can be initialized, that the output of the embedding and the classification layers have correct dimensions and that a full forward pass can be done. We also test that the training and validation methods for the Pytorch Lightning module class work correctly. (83)
 
 ### Question 8
 
@@ -208,7 +215,7 @@ end of the project.
 >
 > Answer:
 
---- question 8 fill here ---
+The total code coverage is 88 % The coverage only tells us how much of the code that can be executed. Even if the coverage is 100 % this does not mean that 100 % of the code does what is should, and hence can include errors. To ensure that the code does not have errors, we have to also design the tests such that we cover the potential errors.
 
 ### Question 9
 
@@ -223,7 +230,8 @@ end of the project.
 >
 > Answer:
 
---- question 9 fill here ---
+Our workflow included using branches in accordance with the recommendations. It was decided that every time we began developing a new feature, a branch would be created specifically for this. Once everything worked as intended with the new feature, we would merge the branch into main and close it. This way, the open branches served as an overview of what features were currently under development, and it was ensured that the main branch always contained the latest working version of our project.\\
+We implemented a kind of informal pull request for main, which simply meant notifying the other team members when making changes to main. As we were all sitting together most of the time this worked quite smoothly for checking and fixing any issues and keeping everyone updated on changes. However, if we had been spending more time working separately, if would have been necessary to implement a formal version of pull request to ensure that we had clear guidelines for when a change would be pushed to main, so we did not accidentally impede each others work or end up with a broken version of the project in main. (191)
 
 ### Question 10
 
@@ -238,7 +246,7 @@ end of the project.
 >
 > Answer:
 
---- question 10 fill here ---
+Yes, we did use DVC in our project. We are not sure if it really improved our project, since that we have been working with a fixed dataset. However, it could be beneficial if our dataset included live data that would have been added to our initial dataset during the project lifetime. In that case DVC would allow us to reproduce a previous state of the project i.e. training the model on a previous version of the data would allow us to recreate results. This might be very useful if the added data had a different composition than the original dataset in which case we might like to investigate or monitor how that influenced the predictions made by our model
 
 ### Question 11
 
@@ -254,7 +262,9 @@ end of the project.
 >
 > Answer:
 
---- question 11 fill here ---
+For CI we have set up two GitHub workflows that are both configured to execute on push. One of them runs our unit tests which allows us to confirm that our python files do not appear to be broken by the changes. This one is runs the tests for all three main operating systems to ensure that it would run for all group members and anyone evaluating the project. We decided to only support python 3.11, as we decided it would be more beneficial to spend time on other aspects on the project than resolving dependency issues between packages. We implemented caching in the workflow file, however, the resulting speedup of the runtime of the workflow is only about 10 seconds. To be able to run the tests for our data we set up a GitHub secret to allow our CI to authenticate with our DVC storage solution.
+The other workflow takes care of linting by running "ruff format '*.py' which helps us maintain the desired formatting of our code files. In this workflow we only test for one operating system, Ubuntu, as it only concerns the formatting of the .py-files and thus there is nothing here that would be specific to an operating system. 
+Here is a link to a GitHub actions workflow: something... (214)
 
 ## Running code and tracking experiments
 
@@ -273,7 +283,23 @@ end of the project.
 >
 > Answer:
 
---- question 12 fill here ---
+We used hydra to configure and execute experiments for the classification model. We used config files which specify model and training parameters such as:
+
+- Activation function
+- Optimization algorithm
+- Learning rate
+- Batch size
+
+To run an experiment using a config file named fro example exp.yaml, we write a script train_model.py containing a function with the hydra decorator:
+
+@hydra.main(version_base=None, config_path="conf", config_name="config")
+def train(cfg):
+.
+.
+.
+
+where train(cfg) contains all the training logic needed for running an experiment.
+We can then run the experiment by executing the train_model.py script.
 
 ### Question 13
 
@@ -288,7 +314,9 @@ end of the project.
 >
 > Answer:
 
---- question 13 fill here ---
+In conjunction with hydra, we used Weights and Biases (W & B) to automatically log data and metrics related to the experiments. Logging with W & B was setup with pytorch lightning, which helped us secure that all relevant information from the various runs of our code was stored systematically and easily accessible later. 
+
+We made sure to configure all of our hyperparameters through our config files. This is an essential step of securing reproducibility of results (together with version control of the code and data), as explicitly defined hyperparameters prevents unintentional variations between different runs or environments (i.e. due to varying default settings). It also increases transparency, which makes it easier for others to understand and replicate the experiment. (120)
 
 ### Question 14
 
@@ -322,6 +350,7 @@ end of the project.
 
 --- question 15 fill here ---
 
+
 ### Question 16
 
 > **When running into bugs while trying to run your experiments, how did you perform debugging? Additionally, did you**
@@ -335,7 +364,7 @@ end of the project.
 >
 > Answer:
 
---- question 16 fill here ---
+We have tried to write code in pairs, and when bugs occurred, used the debugger in VSCode to find and correct these. When training and deploying our model, the parts of the code which are most time costly are those related to configuring docker containers and pulling data from a remote drive. The code we have written does therefore not affect performance significantly in proportion to the processes we have no control over.
 
 ## Working in the cloud
 
@@ -352,7 +381,11 @@ end of the project.
 >
 > Answer:
 
---- question 17 fill here ---
+We connected the Data Version Control to Google Cloud Storage, and used this to push and pull data from our local laptops. Furthermore, we ran the model on Google Run, where it pulled data from the storage using dvc.
+
+We also tried to use Google Cloud Functions, but since our model is rather big (>4GB) and it is built in pytorch, which also takes up much space (>4GB), our model cannot run in Google Cloud Functions, which has a storage limit of 8GB.
+
+Bucket?
 
 ### Question 18
 
@@ -367,7 +400,7 @@ end of the project.
 >
 > Answer:
 
---- question 18 fill here ---
+We used Google Cloud Compute Engine to run the docker image for training models. furthermore, we used Compute Engine through Google Cloud Run, where we deployed a RESTapi API using Fastapi, which can be used for classifying textstrings over http.
 
 ### Question 19
 
@@ -410,7 +443,7 @@ end of the project.
 >
 > Answer:
 
---- question 22 fill here ---
+Yes, we managed to deploy the model both locally and in the cloud. We implemented a web application using FastAPI  which can be run using a specific docker image that takes care of all application dependencies. We tried running this both locally and on Google Cloud Run. A user can then interact with the application by sending a get request to the running server, with the string input as parameter, and will receive a message with the classification label.
 
 ### Question 23
 
@@ -425,7 +458,7 @@ end of the project.
 >
 > Answer:
 
---- question 23 fill here ---
+We have not implemented monitoring of our deployed model. Monitoring could help us track the performance of our model as time progresses. We would then be able to detect when relevant metrics such as prediction accuracy, runtime start looking bad, and take an action to remedy this.
 
 ### Question 24
 
@@ -439,7 +472,7 @@ end of the project.
 >
 > Answer:
 
---- question 24 fill here ---
+We mostly used Google Cloud Run.
 
 ## Overall discussion of project
 
@@ -460,7 +493,7 @@ end of the project.
 >
 > Answer:
 
---- question 25 fill here ---
+The github repository created from the cookiecutter template is the central element of the project setup. From a user perspective, we can either clone the code repository and run the docker images that are available in the .docker
 
 ### Question 26
 
@@ -474,7 +507,9 @@ end of the project.
 >
 > Answer:
 
---- question 26 fill here ---
+In our project, we encountered significant challenges related to the integration of Google Cloud Platform (GCP) services and Data Version Control (DVC). These difficulties centered around the orchestration of data management, model training, and deployment in a cloud-based environment. 
+Initially, integrating GCP into our workflow took time to sort out. Configuring authentication, managing service accounts, and ensuring proper access permissions between GitHub, DVC, GCP and our local environments proved to be a tricky undertaking.
+To overcome these challenges we would go through the exercises for each and try to make it work in the practice project before implementing it for our project. We would also ask Nicki and the TA's for guidance, but in some cases they also struggled to assist us. We tried following different approaches before finally arriving at an understanding of how we could set up some of the desired functionality using service accounts. (147)
 
 ### Question 27
 
