@@ -176,7 +176,9 @@ The first line creates a virtual environment named venv with python 3.11 install
 > *experiments.*
 > Answer:
 
-We have used and kept kept the overall structure of the cookiecutter template.
+We have used and kept the overall structure of the cookiecutter template. We ended up using all the original folders from the template, and in addition have created the folders __.dvc__, __.pytest_cache__, __ruff_cache__, and __bash__ in the root directory. We also created a number of additional files, including 'ignore' files for GCP and DVC, additional requirements-files, and yaml-files e.g. one for composing dockerfiles.
+
+Inside the project folder, __hatespeech_classification_02476__, we also ended up using all folders included in the template, for example in the data folder we filled out the make_dataset for processing the data and added another scripts called download_dataset that handles downloading the original dataset from Kaggle. Two new folders were created in the project folder: __\_pycache\___ and __conf__, the latter containing our config files for running experiments and logging information and following the recommended file structure. In addition to the _predict_model_ included in the template, we also created python files _predict_cloudfuntion_ tailored to GCP, and _app_ containing code for FastAPI.
 
 ### Question 6
 
