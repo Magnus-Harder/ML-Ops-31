@@ -28,7 +28,7 @@ def root():
     }
     return response
 
-@app.post("/predict")
+@app.get("/predict")
 def predict(input_data: str):
     print("input_data: ", input_data)
     print("type(input_data): ", type(input_data))
