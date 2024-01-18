@@ -12,7 +12,7 @@ import pickle
 @hydra.main(version_base=None, config_path="conf", config_name="config")
 def train(cfg):
     # Set up logging
-    wandb_logger=WandbLogger(log_model="all")
+    wandb_logger = WandbLogger(log_model="all")
     wandb_logger.log_hyperparams(omegaconf.OmegaConf.to_container(cfg))
 
     # Configure hyperparameters and data
@@ -27,19 +27,21 @@ def train(cfg):
         device = 'cpu'
     elif torch.cuda.is_available():
         print("Using CUDA")
-        device = 'cuda'
+        device = "cuda"
     else:
         print("Using CPU")
-        device = 'cpu'
+        device = "cpu"
 
     # Create the model and trainer
     model = HatespeechClassification(**hparams["class_configuration"])
-    early_stopping = EarlyStopping('val_loss')
-    trainer = Trainer(max_epochs=hparams["training_configuration"]["max_epochs"], 
-                      accelerator=device, 
-                      logger=wandb_logger, 
-                      enable_checkpointing=False, 
-                      callbacks=[early_stopping])
+    early_stopping = EarlyStopping("val_loss")
+    trainer = Trainer(
+        max_epochs=hparams["training_configuration"]["max_epochs"],
+        accelerator=device,
+        logger=wandb_logger,
+        enable_checkpointing=False,
+        callbacks=[early_stopping],
+    )
 
     # Load training data
     DATAPATH = f"data/processed/{model.model_dict[hparams['class_configuration']['model_type']]}"
@@ -61,10 +63,16 @@ def train(cfg):
     # Create dataloaders
     batch_size = hparams["training_configuration"]["batch_size"]
     train_dataloader = torch.utils.data.DataLoader(
-        torch.utils.data.TensorDataset(train_data, train_labels), batch_size=batch_size, num_workers=4, persistent_workers=True,
+        torch.utils.data.TensorDataset(train_data, train_labels),
+        batch_size=batch_size,
+        num_workers=4,
+        persistent_workers=True,
     )
     val_dataloader = torch.utils.data.DataLoader(
-        torch.utils.data.TensorDataset(val_data, val_labels), batch_size=batch_size, num_workers=4, persistent_workers=True
+        torch.utils.data.TensorDataset(val_data, val_labels),
+        batch_size=batch_size,
+        num_workers=4,
+        persistent_workers=True,
     )
 
     # Train

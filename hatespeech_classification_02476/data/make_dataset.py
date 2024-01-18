@@ -10,6 +10,7 @@ PROCESSED_DATA_PATH = "data/processed"
 
 model_dict = {"Best": "all-mpnet-base-v2", "Fast": "all-MiniLM-L6-v2"}
 
+
 @click.command()
 @click.argument("training_ratio", required=False, default=0.8)
 @click.argument("model_name", required=False, default="Fast")
