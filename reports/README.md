@@ -407,8 +407,17 @@ We used Google Cloud Compute Engine to run the docker image for training models.
 >
 > Answer:
 
-[!storage](figures/storage1.png)
-[!storage](figures/storage2.png)
+[Storage image](figures/storage1.png)
+<p align="center">
+  <img src="figures/storage1.png" width="1000">
+</p>
+
+
+[Storage image](figures/storage2.png)
+<p align="center">
+  <img src="figures/storage2.png" width="1000">
+</p>
+
 
 ### Question 20
 
@@ -417,7 +426,10 @@ We used Google Cloud Compute Engine to run the docker image for training models.
 >
 > Answer:
 
-[!storage](figures/container_registry.png)
+[Container registry image](figures/container_registry.png)
+<p align="center">
+  <img src="figures/container_registry.png" width="1000">
+</p>
 
 ### Question 21
 
@@ -426,7 +438,10 @@ We used Google Cloud Compute Engine to run the docker image for training models.
 >
 > Answer:
 
-[!storage](figures/build_history.png)
+[Build hisotry iamge file](figures/build_history.png)
+<p align="center">
+  <img src="figures/build_history.png" width="1000">
+</p>
 
 ### Question 22
 
@@ -473,7 +488,9 @@ We have not implemented monitoring of our deployed model. Monitoring could help 
 
 We spend a total of $16.44. The biggest expense was $8.01 on cloud storage and the second biggest expense was $6.87 on Compute Engine. See also the breakdown here:
 
-[!Cost breakdown](figures/cost_breakdown.png)
+<p align="center">
+  <img src="figures/cost_breakdown.png" width="1000">
+</p>
 
 ## Overall discussion of project
 
