@@ -64,9 +64,6 @@ def test_validation_step(sample_data):
     model = HatespeechClassification()
     model.eval()
     
-    # Load sample data
-    #sentences = torch.load(sample_data / "train_data.pt")
-    #labels = torch.load(sample_data / "train_labels.pt")
     # Load sample training data
     val_data = torch.load(sample_data / "train_data.pt")
     val_labels = torch.load(sample_data / "train_labels.pt")
