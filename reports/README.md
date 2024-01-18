@@ -448,7 +448,14 @@ We used Google Cloud Compute Engine to run the docker image for training models.
 >
 > Answer:
 
-Yes, we managed to deploy the model both locally and in the cloud. We implemented a web application using FastAPI  which can be run using a specific docker image that takes care of all application dependencies. We tried running this both locally and on Google Cloud Run. A user can then interact with the application by sending a get request to the running server, with the string input as parameter, and will receive a message with the classification label.
+Yes, we managed to deploy the model both locally and in the cloud. We implemented a web application using FastAPI which can be run using a docker image that takes care of all application dependencies. We tried running this both locally and on Google Cloud Run. 
+
+A user can then interact with the application by sending a get request to the running server, with the string input as parameter, and will receive a message with the classification label.
+
+An example of a http-request could be the following, which returns a prediction on a tweet from the training data set:
+```
+https://deploy-vout6xuvda-uc.a.run.app/predict?input_data=just by being able to tweet this insufferable bullshit proves trump a nazi you vagina
+```
 
 ### Question 23
 
