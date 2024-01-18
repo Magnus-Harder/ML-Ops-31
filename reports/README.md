@@ -381,11 +381,9 @@ We have tried to write code in pairs, and when bugs occurred, used the debugger 
 >
 > Answer:
 
-We connected the Data Version Control to Google Cloud Storage, and used this to push and pull data from our local laptops. Furthermore, we ran the model on Google Run, where it pulled data from the storage using dvc.
+We connected the Data Version Control to Google Cloud Storage (Bucket), and used this to push and pull data from our local laptops. Furthermore, we ran the model on Google Run, where it pulled data from the storage using dvc.
 
 We also tried to use Google Cloud Functions, but since our model is rather big (>4GB) and it is built in pytorch, which also takes up much space (>4GB), our model cannot run in Google Cloud Functions, which has a storage limit of 8GB.
-
-Bucket?
 
 ### Question 18
 
@@ -409,7 +407,8 @@ We used Google Cloud Compute Engine to run the docker image for training models.
 >
 > Answer:
 
---- question 19 fill here ---
+[!storage](figures/storage1.png)
+[!storage](figures/storage2.png)
 
 ### Question 20
 
@@ -418,7 +417,7 @@ We used Google Cloud Compute Engine to run the docker image for training models.
 >
 > Answer:
 
---- question 20 fill here ---
+[!storage](figures/container_registry.png)
 
 ### Question 21
 
@@ -427,7 +426,7 @@ We used Google Cloud Compute Engine to run the docker image for training models.
 >
 > Answer:
 
---- question 21 fill here ---
+[!storage](figures/build_history.png)
 
 ### Question 22
 
@@ -472,7 +471,9 @@ We have not implemented monitoring of our deployed model. Monitoring could help 
 >
 > Answer:
 
-We mostly used Google Cloud Run.
+We spend a total of $16.44. The biggest expense was $8.01 on cloud storage and the second biggest expense was $6.87 on Compute Engine. See also the breakdown here:
+
+[!Cost breakdown](figures/cost_breakdown.png)
 
 ## Overall discussion of project
 
