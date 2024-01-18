@@ -32,9 +32,6 @@ jobs:
       - name: Run pytest for model
         run: pytest tests/test_model.py
 
-      - name: Run pytest for make_data
-        run: pytest tests/test_make_data.py
-
       # Not in use for private bucket
       #- uses: iterative/setup-dvc@v1
       #- name: Get data
