@@ -9,8 +9,8 @@ app = FastAPI()
 #MODEL_FILE = "models/model.pt"
 
 #client = storage.Client()
-#bucket = client.get_bucket(BUCKET_NAME)
-#blob = bucket.get_blob(MODEL_FILE)
+#bucket = client.bucket(BUCKET_NAME)
+#blob = bucket.blob(MODEL_FILE)
 #with open('models/tmp_model.pt', 'wb') as file_obj:
 #    blob.download_to_file(file_obj)
 
@@ -28,7 +28,7 @@ def root():
     }
     return response
 
-@app.post("/predict")
+@app.get("/predict")
 def predict(input_data: str):
     print("input_data: ", input_data)
     print("type(input_data): ", type(input_data))
