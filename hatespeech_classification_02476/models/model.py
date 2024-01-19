@@ -13,13 +13,13 @@ class HatespeechClassification(LightningModule):
         self, model_type="Fast", hidden_dim=128, activation="relu", dropout=0.4, learning_rate=1e-4, optimizer="Adam"
     ):
         super().__init__()
-        
-        # Define 
+
+        # Define
         self.learning_rate = learning_rate
         self.optimizer = optimizer
         self.accuracy = Accuracy(task="binary")
         self.binary_statscores = BinaryStatScores(threshold=0.5)
-        self.model_dict = {"Best": "all-mpnet-base-v2", "Fast": "all-MiniLM-L6-v2"}  
+        self.model_dict = {"Best": "all-mpnet-base-v2", "Fast": "all-MiniLM-L6-v2"}
 
         # Get activation function
         activation_dict = {"relu": nn.ReLU(), "leaky_relu": nn.LeakyReLU(), "sigmoid": nn.Sigmoid(), "tanh": nn.Tanh()}
@@ -43,11 +43,11 @@ class HatespeechClassification(LightningModule):
         # Define the Classifier
         self.classifier = nn.Sequential(
             nn.Dropout(dropout),
-            nn.Linear(embedding_size, hidden_dim), 
+            nn.Linear(embedding_size, hidden_dim),
             nn.Dropout(dropout),
             self.activation_func,
-            nn.Linear(hidden_dim, 1), 
-            nn.Sigmoid()
+            nn.Linear(hidden_dim, 1),
+            nn.Sigmoid(),
         )
 
         # Define the loss function
@@ -79,7 +79,7 @@ class HatespeechClassification(LightningModule):
         self.log("train_acc", acc)
 
         return loss
-    
+
     # Validation step for pytorch lightning
     def validation_step(self, batch):
         # Get the data and target
@@ -108,7 +108,6 @@ class HatespeechClassification(LightningModule):
 
     # Optimizer for pytorch lightning
     def configure_optimizers(self):
-
         # Define the optimizer, currently only Adam and SGD are supported
         optimizer_dict = {"Adam": optim.Adam, "SGD": optim.SGD}
         try:

@@ -10,3 +10,6 @@ class_configuration:
 training_configuration:
   batch_size: 1024
   max_epochs: 50
+
+name: exp1
+
