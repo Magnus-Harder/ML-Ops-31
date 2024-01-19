@@ -414,7 +414,9 @@ We also tried to use Google Cloud Functions, but since our model is rather big (
 >
 > Answer:
 
-We used Google Cloud Compute Engine to run the docker image for training models. furthermore, we used Compute Engine through Google Cloud Run, where we deployed a RESTapi API using Fastapi, which can be used for classifying textstrings over http.
+Initially we used Google Cloud Compute Engine to run the docker image that trained the models. furthermore, we used Compute Engine through Google Cloud Run, where we deployed a RESTapi API using Fastapi, which can be used for classifying textstrings over http. Later we created a pipeline that utilized automated training through Vertex AI costume jobs and Google cloud run for an automated deployment.
+
+Further we tried creating VM’s trough specific container images which proved to be a wrong approach. Containers and VM's operate at different levels of abstraction, with containers designed to be lightweight and portable where VM's provide a more comprehensive virtualization of an entire operating system. 
 
 ### Question 19
 
