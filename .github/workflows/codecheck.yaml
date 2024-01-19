@@ -1,0 +1,33 @@
+name: Linting
+
+on:
+  push:
+
+jobs:
+  run-tests:
+    strategy:
+      fail-fast: false
+
+      matrix:
+        os: [ubuntu-latest] 
+        python-version: ["3.11"]
+
+    name: Test
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup python and ruff
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+          cache-dependency-path: '**/requirements_dev.txt'
+
+      - name: Install ruff
+        run: pip install ruff
+
+      - name: Run ruff
+        run: ruff format .
