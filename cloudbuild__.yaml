@@ -1,0 +1,30 @@
+steps:
+    - name: python
+      entrypoint: bash
+      args: ['-c', 'mkdir ML-Ops-31; cd ML-Ops-31; pip install -U dvc dvc[gs];git init; dvc pull;']
+
+    # Step 1: Build the Docker image
+    - name: "gcr.io/cloud-builders/docker"
+      args:
+          [
+              "build",
+              "-f",
+              "./dockerfiles/train_model_cloudbuild.dockerfile",
+              ".",
+              "-t",
+              "gcr.io/dtu-ml-ops-31/trainer:latest"
+          ]
+           
+
+    # Step 2: Push the Docker image to Artifact Registry
+    - name: "gcr.io/cloud-builders/docker"
+      args: ["push", "gcr.io/dtu-ml-ops-31/trainer:latest"]
+
+
+
+
+images:
+    - "gcr.io/dtu-ml-ops-31/trainer:latest"
+
+
+    
