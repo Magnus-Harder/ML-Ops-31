@@ -341,7 +341,8 @@ We made sure to configure all of our hyperparameters through our config files. T
 >
 > Answer:
 
---- question 14 fill here ---
+![W and B snapshot](figures/wandb.png)
+As seen in the image, we have tracked the training accuracy, training loss, validation accuracy and validation loss. We also track the validation accuracy on positive samples and negative samples separately. These are all metrics which indicate how well the trained model performs, and how the training configurations affect the model performance. Getting this kind of feedback from the experiments is essential to improve the machine learning model, and finding a good training setup. Monitoring and analyzing results and metrics in machine learning experiments is crucial for various reasons. Metrics provide a quantitative evaluation of model performance, aiding in model selection, hyperparameter tuning, and debugging. Continuous tracking allows for iterative improvements and efficient resource allocation. Results serve as a common language for communication among team members and stakeholders. Understanding metrics is vital before deploying models in real-world settings, ensuring robustness and ethical considerations. Documentation of experiments through metrics helps in achieving reproducibility and facilitates collaboration. Ultimately, tracking results is fundamental for making informed decisions, refining models over time, and successfully deploying machine learning solutions with confidence in their effectiveness and ethical implications.
 
 ### Question 15
 
