@@ -578,6 +578,6 @@ s232407 (Mattias): Model coding, unit tests, model training, prediction code, RE
 
 s180722 (Simon Daniel Eiriksson): Setting up Google project, Google Cloud Run, Storage, docker containers, REST API web-app.
 
-s204117 (Magnus Harder): Github repository, Model training deployment on Google Compute, model training
+s204117 (Magnus Harder): Github repository, Model coding, Model training and deployment on Google Compute, DVC and Storgae.
 
 s184227 (Amalie Roark): Unit tests, config files, CI workflows, prediction code, REST with FastAPI
