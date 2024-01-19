@@ -4,7 +4,7 @@ steps:
       entrypoint: bash
       args: ['-c', 'mkdir ML-Ops-31; cd ML-Ops-31; pip install -U dvc dvc[gs];git init; dvc pull;']
 
-    # Step 1: Build the Docker image
+    # Step 1: Build the Docker image for the trainer
     - name: "gcr.io/cloud-builders/docker"
       args:
           [
@@ -16,26 +16,31 @@ steps:
               "gcr.io/dtu-ml-ops-31/trainer:latest"
           ]
            
+           
 
-    # Step 2: Push the Docker image to Artifact Registry
+    # # Step 2: Push the Docker image to Artifact Registry
     - name: "gcr.io/cloud-builders/docker"
       args: ["push", "gcr.io/dtu-ml-ops-31/trainer:latest"]
 
-    # Step 3: Submit the training job to Vertex AI for experiment 1
-    # - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
-    #   entrypoint: gcloud
-    #   args:
-    #       [
-    #           "ai",
-    #           "custom-jobs",
-    #           "create",
-    #           "--region=europe-west1",
-    #           "--display-name=trainer-exp1",
-    #           --config=config_exp1.yaml 
-    #       ]
-    #   id: "Submit training job to Vertex AI"
+    # Step 3: Build the Docker image for deployment
+    - name: "gcr.io/cloud-builders/docker"
+      args:
+          [
+              "build",
+              "-f",
+              "./dockerfiles/deploy_model_cloudbuild.dockerfile",
+              ".",
+              "-t",
+              "gcr.io/dtu-ml-ops-31/deploy:latest"
+          ]
+           
 
-    # Step 4: Submit the training job to Vertex AI for experiment 2
+    # Step 4: Push the Docker image to Artifact Registry
+    - name: "gcr.io/cloud-builders/docker"
+      args: ["push", "gcr.io/dtu-ml-ops-31/deploy:latest"]
+
+
+    # Step 5: Submit the training job to Vertex AI for experiment 2
     - name: "gcr.io/cloud-builders/gcloud"
       args:
           [
@@ -48,12 +53,27 @@ steps:
           ]
       id: "Submit training job to Vertex AI"
     
-    # Step 5: Host the model on Vertex AI
+    # Step 6: Deploy the Docker image to Cloud Run
+    - name: 'gcr.io/cloud-builders/gcloud'
+      args:
+        ['run', 'deploy', 'deploy',
+        '--image=gcr.io/dtu-ml-ops-31/deploy:latest',
+        '--service-account=dtu-ml-ops-31@appspot.gserviceaccount.com',
+        '--allow-unauthenticated',
+        '--port=8080',
+        '--cpu=2',
+        '--memory=8Gi',
+        '--max-instances=4',
+        '--cpu-boost',
+        '--region=us-central1',
+        '--project=dtu-ml-ops-31'  ]
 
 
 
 images:
     - "gcr.io/dtu-ml-ops-31/trainer:latest"
+    - "gcr.io/dtu-ml-ops-31/deploy:latest"
 
+#'--service-account=1025735580781-compute@developer.gserviceaccount.com',
 
     

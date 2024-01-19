@@ -1,0 +1,11 @@
+outs:
+- hash: md5
+  path: models
+  files:
+  - relpath: model.pt
+    md5: d4bc708689163d73e7c653841673151c
+    size: 91089406
+    cloud:
+      remote_storage:
+        etag: 08dfff849887e983031001
+        version_id: '1705653701787615'
